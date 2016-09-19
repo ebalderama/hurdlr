@@ -1,0 +1,10 @@
+Package: hurdlr
+Type: Package
+Title: Zero-Inflated and Hurdle Modelling Using Bayesian Inference 
+Version: 0.1
+Date: 2015-11-16
+Author: Taylor Trippe, Dr. Earvin Balderama
+Maintainer: <ttrippe@luc.edu>
+Description: When considering count data, it is often the case that many more zero counts than would be expected of some given distribution are observed. It is well-established that data such as this can be reliably modelled using zero-inflated or hurdle distributions, both of which may be applied using hurdlr functions. Bayesian analysis methods are used to best model problematic count data that cannot be fit to any typical distribution. The hurdlr package functions are flexible and versatile, and can be applied to varying count distributions, parameter estimation with or without covariate information, and are able to allow for multiple hurdles – as it is also not uncommon that count data have an abundance of large-number observations which would be considered outliers of the typical distribution. In lieu of throwing out data or mis-specifying the typical distribution, these “extreme” observations can be applied to a second, “extreme” distribution. With the given functions of the hurdlr package, such a two-hurdle model may be easily specified in order to best manage data that is both zero-inflated and over-dispersed.
+License: 
+LazyData: TRUE
