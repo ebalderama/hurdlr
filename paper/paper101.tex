@@ -1,5 +1,212 @@
 \documentclass[article]{jss}
 
+
+
+
+
+%============================================
+%============================================
+%My New Commands
+%============================================
+\newcommand{\balpha}{\mbox{\boldmath $\alpha$} }
+\newcommand{\bbeta}{\mbox{\boldmath $\beta$} }
+\newcommand{\bdelta}{\mbox{\boldmath $\delta$} }
+\newcommand{\bepsilon}{\mbox{\boldmath $\epsilon$} }
+\newcommand{\bgamma}{\mbox{\boldmath $\gamma$} }
+\newcommand{\blambda}{\mbox{\boldmath $\lambda$} }
+\newcommand{\bmu}{\mbox{\boldmath $\mu$} }
+\newcommand{\bnu}{\mbox{\boldmath $\nu$} }
+\newcommand{\bomega}{\mbox{\boldmath $\omega$} }
+\newcommand{\bphi}{\mbox{\boldmath $\phi$} }
+\newcommand{\bpsi}{\mbox{\boldmath $\psi$} }
+\newcommand{\brho}{\mbox{\boldmath $\rho$} }
+\newcommand{\bsigma}{\mbox{\boldmath $\sigma$} }
+\newcommand{\btau}{\mbox{\boldmath $\tau$} }
+\newcommand{\btheta}{\mbox{\boldmath $\theta$} }
+\newcommand{\bupsilon}{\mbox{\boldmath $\upsilon$} }
+\newcommand{\bxi}{\mbox{\boldmath $\xi$} }
+\newcommand{\bzeta}{\mbox{\boldmath $\zeta$} }
+\newcommand{\bDelta}{\mbox{\boldmath $\Delta$} }
+\newcommand{\bGamma}{\mbox{\boldmath $\Gamma$} }
+\newcommand{\bLambda}{\mbox{\boldmath $\Lambda$} }
+\newcommand{\bPhi}{\mbox{\boldmath $\Phi$} }
+\newcommand{\bSigma}{\mbox{\boldmath $\Sigma$} }
+\newcommand{\bTheta}{\mbox{\boldmath $\Theta$} }
+
+\newcommand{\bfa}{\mbox{\bf a} }
+\newcommand{\bfb}{\mbox{\bf b} }
+\newcommand{\bfc}{\mbox{\bf c} }
+\newcommand{\bfd}{\mbox{\bf d} }
+\newcommand{\bfe}{\mbox{\bf e} }
+\newcommand{\bff}{\mbox{\bf f} }
+\newcommand{\bfg}{\mbox{\bf g} }
+\newcommand{\bfh}{\mbox{\bf h} }
+\newcommand{\bfi}{\mbox{\bf i} }
+\newcommand{\bfj}{\mbox{\bf j} }
+\newcommand{\bfk}{\mbox{\bf k} }
+\newcommand{\bfl}{\mbox{\bf l} }
+\newcommand{\bfm}{\mbox{\bf m} }
+\newcommand{\bfn}{\mbox{\bf n} }
+\newcommand{\bfo}{\mbox{\bf o} }
+\newcommand{\bfp}{\mbox{\bf p} }
+\newcommand{\bfq}{\mbox{\bf q} }
+\newcommand{\bfr}{\mbox{\bf r} }
+\newcommand{\bfs}{\mbox{\bf s} }
+\newcommand{\bft}{\mbox{\bf t} }
+\newcommand{\bfu}{\mbox{\bf u} }
+\newcommand{\bfv}{\mbox{\bf v} }
+\newcommand{\bfw}{\mbox{\bf w} }
+\newcommand{\bfx}{\mbox{\bf x} }
+\newcommand{\bfy}{\mbox{\bf y} }
+\newcommand{\bfz}{\mbox{\bf z} }
+\newcommand{\bfA}{\mbox{\bf A} }
+\newcommand{\bfB}{\mbox{\bf B} }
+\newcommand{\bfC}{\mbox{\bf C} }
+\newcommand{\bfD}{\mbox{\bf D} }
+\newcommand{\bfE}{\mbox{\bf E} }
+\newcommand{\bfF}{\mbox{\bf F} }
+\newcommand{\bfG}{\mbox{\bf G} }
+\newcommand{\bfH}{\mbox{\bf H} }
+\newcommand{\bfI}{\mbox{\bf I} }
+\newcommand{\bfJ}{\mbox{\bf J} }
+\newcommand{\bfK}{\mbox{\bf K} }
+\newcommand{\bfL}{\mbox{\bf L} }
+\newcommand{\bfM}{\mbox{\bf M} }
+\newcommand{\bfN}{\mbox{\bf N} }
+\newcommand{\bfO}{\mbox{\bf O} }
+\newcommand{\bfP}{\mbox{\bf P} }
+\newcommand{\bfQ}{\mbox{\bf Q} }
+\newcommand{\bfR}{\mbox{\bf R} }
+\newcommand{\bfS}{\mbox{\bf S} }
+\newcommand{\bfT}{\mbox{\bf T} }
+\newcommand{\bfU}{\mbox{\bf U} }
+\newcommand{\bfV}{\mbox{\bf V} }
+\newcommand{\bfW}{\mbox{\bf W} }
+\newcommand{\bfX}{\mbox{\bf X} }
+\newcommand{\bfY}{\mbox{\bf Y} }
+\newcommand{\bfZ}{\mbox{\bf Z} }
+
+\newcommand{\calA}{{\cal A}}
+\newcommand{\calB}{{\cal B}}
+\newcommand{\calC}{{\cal C}}
+\newcommand{\calD}{{\cal D}}
+\newcommand{\calE}{{\cal E}}
+\newcommand{\calF}{{\cal F}}
+\newcommand{\calG}{{\cal G}}
+\newcommand{\calH}{{\cal H}}
+\newcommand{\calI}{{\cal I}}
+\newcommand{\calJ}{{\cal J}}
+\newcommand{\calK}{{\cal K}}
+\newcommand{\calL}{{\cal L}}
+\newcommand{\calM}{{\cal M}}
+\newcommand{\calN}{{\cal N}}
+\newcommand{\calO}{{\cal O}}
+\newcommand{\calP}{{\cal P}}
+\newcommand{\calQ}{{\cal Q}}
+\newcommand{\calR}{{\cal R}}
+\newcommand{\calS}{{\cal S}}
+\newcommand{\calT}{{\cal T}}
+\newcommand{\calU}{{\cal U}}
+\newcommand{\calV}{{\cal V}}
+\newcommand{\calW}{{\cal W}}
+\newcommand{\calX}{{\cal X}}
+\newcommand{\calY}{{\cal Y}}
+\newcommand{\calZ}{{\cal Z}}
+
+%\renewcommand{\Hat}{\widehat}
+%\renewcommand{\Bar}{\overline}
+%\renewcommand{\Tilde}{\widetilde}
+
+\let\originalleft\left
+\let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+
+\providecommand{\itbf}[1]{\textit{\textbf{#1}}} 
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert} 
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+
+\newcommand{\cond}{\,\left\vert\vphantom{}\right.}
+\newcommand{\Cond}{\,\Big\vert\vphantom{}\Big.}
+\newcommand{\COND}{\,\Bigg\vert\vphantom{}\Bigg.}
+
+\providecommand{\paren}[1]{\left(#1\right)} 
+\providecommand{\Paren}[1]{\Big(#1\Big)}
+\providecommand{\PAREN}[1]{\bigg(#1\bigg)} 
+\providecommand{\bracket}[1]{\left[ #1 \right]} 
+\providecommand{\Bracket}[1]{\Big[ #1 \Big]} 
+\providecommand{\BRACKET}[1]{\bigg[ #1 \bigg]} 
+\providecommand{\curlybrace}[1]{\left\{ #1 \right\}} 
+\providecommand{\Curlybrace}[1]{\Big\{ #1 \Big\}} 
+\providecommand{\CURLYBRACE}[1]{\bigg\{ #1 \bigg\}} 
+
+\newcommand{\Bern}{\mbox{{\sf Bern}}}
+\newcommand{\Bernoulli}{\mbox{{\sf Bernoulli}}}
+\newcommand{\Beta}{\mbox{{\sf Beta}}}
+\newcommand{\Bin}{\mbox{{\sf Bin}}}
+\newcommand{\Binomial}{\mbox{{\sf Binomial}}}
+\newcommand{\DE}{\mbox{{\sf DE}}}
+\newcommand{\Exponential}{\mbox{{\sf Exponential}}}
+\newcommand{\F}{\mbox{{\sf F}}}
+\newcommand{\Gam}{\mbox{{\sf Gamma}}}
+\newcommand{\GP}{\mbox{{\sf GP}}}
+\newcommand{\GPD}{\mbox{{\sf GPD}}}
+\newcommand{\Geom}{\mbox{{\sf Geom}}}
+\newcommand{\Geometric}{\mbox{{\sf Geometric}}}
+\newcommand{\HyperGeom}{\mbox{{\sf HyperGeom}}}
+\newcommand{\HyperGeometric}{\mbox{{\sf HyperGeometric}}}
+\newcommand{\InverseGam}{\mbox{{\sf InverseGamma}}}
+\newcommand{\InvWish}{\mbox{{\sf InvWish}}}
+\newcommand{\MVN}{\mbox{{\sf MVN}}}
+\newcommand{\NB}{\mbox{{\sf NB}}}
+\newcommand{\NegBin}{\mbox{{\sf NegBin}}}
+\newcommand{\NegativeBinomial}{\mbox{{\sf NegativeBinomial}}}
+\newcommand{\Normal}{\mbox{{\sf Normal}}}
+\newcommand{\Pois}{\mbox{{\sf Pois}}}
+\newcommand{\Poisson}{\mbox{{\sf Poisson}}}
+\newcommand{\Unif}{\mbox{{\sf Unif}}}
+\newcommand{\Uniform}{\mbox{{\sf Uniform}}}
+\newcommand{\Weibull}{\mbox{{\sf Weibull}}}
+
+%\renewcommand{\P}{{\sf P}}
+%\newcommand{\Prob}{{\sf Prob}}
+\newcommand{\median}{{\mathop{\rm median}}}
+%\newcommand{\E}{\mathsf{E}}
+%\newcommand{\V}{\mathsf{V}}
+%\newcommand{\VAR}{\mathsf{VAR}}
+%\newcommand{\COV}{\mathsf{COV}}
+
+\newcommand{\Ho}{{\calH_0}}
+\newcommand{\Hoc}{{\calH_0\colon}}
+\newcommand{\Hone}{{\calH_1}}
+\newcommand{\Honec}{{\calH_1\colon}}
+\newcommand{\Ha}{{\calH_a}}
+\newcommand{\Hac}{{\calH_a\colon}}
+\newcommand{\HA}{{\calH_A}}
+\newcommand{\HAc}{{\calH_A\colon}}
+
+
+\newcommand{\Ind}{\mathds{1}}
+\newcommand{\zerovect}{\mbox{\bf 0}}
+\newcommand{\onesvect}{\mbox{\bf 1}}
+\providecommand{\real}[1]{\mathbb{#1}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\ppd}{\mathcal{P}}
+%\DeclareMathOperator{\logit}{logit}
+%\DeclareMathOperator{\expit}{expit}
+%\DeclareMathOperator{\dint}{\displaystyle\int}
+%\DeclareMathOperator{\dsum}{\displaystyle\sum}
+
+%============================================
+%My New Commands
+%============================================
+%============================================
+
+
+
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% declarations for jss.cls %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -74,6 +281,8 @@
 
 
 \section{Introduction}
+
+In this paper, we present 
 
 \section{Models for count data}
 
