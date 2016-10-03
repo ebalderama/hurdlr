@@ -8,8 +8,7 @@
 \code{zero_nb} is used to fit zero-inflated negative binomial regression models to count data via Bayesian inference.
 }
 \usage{
-zero_nb(y, x, size, a = 1, b = 1,
-        mu.start = 1, mu.sd = 0.05,
+zero_nb(y, x, size, a = 1, b = 1, mu.start = 1,
         beta.prior.mean = 0, beta.prior.sd = 1,
         iters = 1000, burn = 500, nthin = 1,
         plots = T, progress.bar = T)
@@ -26,6 +25,10 @@ numeric response vector.
 numeric predictor matrix.
 }
 
+\item{size}{
+size parameter for negative binomial likelihood distributions.
+}
+
 \item{a}{
 shape parameter for gamma prior distributions.
 }
@@ -36,10 +39,6 @@ rate parameter for gamma prior distributions.
 
 \item{mu.start}{
 initial value for mu parameter.
-}
-
-\item{mu.sd}{
-standard deviation of mu parameter.
 }
 
 \item{beta.prior.mean}{

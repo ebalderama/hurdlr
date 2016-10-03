@@ -9,8 +9,7 @@
 }
 
 \usage{
-zero_poisson(y, x, a = 1, b = 1,
-             lam.start = 1, lam.sd = 0.05,
+zero_poisson(y, x, a = 1, b = 1, lam.start = 1, 
              beta.prior.mean = 0, beta.prior.sd = 1,
              iters = 1000, burn = 500, nthin = 1,
              plots = T, progress.bar = T)
@@ -35,10 +34,6 @@ rate parameter for gamma prior distributions.
 
 \item{lam.start}{
 initial value for lambda parameter.
-}
-
-\item{mu.sd}{
-standard deviation of lamda parameter.
 }
 
 \item{beta.prior.mean}{

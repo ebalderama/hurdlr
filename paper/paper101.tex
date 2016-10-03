@@ -2,7 +2,7 @@
 
 
 
-\usepackage{amssymb, amsthm, amsmath}
+\usepackage{amssymb, amsthm, amsmath, blindtext, enumitem}
 
 
 %============================================
@@ -364,6 +364,137 @@ Notice that when $\mu=\infty$, (\ref{dhurdle}) simplifies to (\ref{nbhurdle}). A
 \section[Implementing hurdlr]{Implementing \pkg{hurdlr}}
 %============================================
 
+%______________________________________________
+\subsection{Zero-inflated modeling}
+
+The \pkg{hurdlr} package supports zero-inflated modeling with the functions \code{zero\textunderscore nb} and \code{zero\textunderscore poisson} which, depending on usage, applies a negative binomial or Poisson distribution to count data with an excess of zeros. Function usage is denoted:
+
+\code{zero\textunderscore nb(y, x, size, a, b, mu.start, beta.prior.mean, beta.prior.sd, iters, burn, nthin, plots, progress.bar)}
+
+or
+
+\code{zero\textunderscore poisson(y, x, a, b, lam.start, beta.prior.mean, beta.prior.sd, iters, burn, nthin, plots, progress.bar)}
+
+with the arguments defined as follows.
+
+\begin{description}[labelindent = 1.5cm, leftmargin = 1.5cm]
+
+	\item[\code{y}] numeric response vector.
+	\item[\code{x}] numeric predictor matrix.
+	\item[\code{size}] size ($r$) parameter for NB($r$, $\mu$) likelihood distributions.
+	\item [\code{a}] shape parameter for Gamma($a$, $b$) prior distributions.
+	\item [\code{b}] rate parameter for Gamma($a$, $b$) prior distributions.
+	\item [\code{size}] size ($r$) parameter for NB($r$, $\mu$) likelihood distributions.
+	\item[\code{mu.start, lam.start}] initial value of distributional mean for NB($r$, $\mu$) or Pois($\lambda$) likelihood, respectively.
+	\item [\code{beta.prior.mean}] mean ($\mu$) for Normal($\mu$, $\sigma^{2}$) prior distributions for coefficient estimation.
+	\item [\code{beta.prior.sd}]\ standard deviation ($\sigma$) for Normal($\mu$, $\sigma^{2}$) prior distributions for coefficient estimation.
+	\item [\code{iters}] number of iterations for the Markov chain algorithm. 
+	\item [\code{burn}] numeric burn-in length.
+	\item [\code{nthin}] numeric thinning rate.
+	\item [\code{plots}] logical operator. \code{TRUE} to print plots. 
+	\item [\code{progress.bar}] logical operator. \code{TRUE} to print progress bar. 
+
+\end{description}
+
+Both \code{zero\textunderscore nb} and \code{zero\textunderscore poisson} functions output a list with the elements:
+
+%______________________________________________
+\subsection{Hurdle modeling}
+
+The \pkg{hurdlr} package allows for hurdle modeling through the \code{hurdle} function. The \code{hurdle} function supports both single- and double-hurdle models as well as a variety of distributions for both ``typical'' distribution f(y|m, r) and the distribution for ``extreme'' values g(y|$\mu$, $\sigma$, $\xi$) 
+
+{\large \textit{Forms of usage}}
+
+A \code{hurdle} function has two forms of usage; one to fit a single-hurdle model, truncated at zero, and the other to fit a double-hurdle model with an additional hurdle at some `extreme' threshold $\psi$. The two usages are, respectively:
+
+\code{hurdle(y, x, Inf,
+	dist, control, iters, burn, nthin, plots, progress.bar)}
+
+and
+
+\code{hurdle(y, x, hurdle,
+	dist, dist.2, control, iters, burn, nthin, plots, progress.bar)} \\ 
+
+with the arguments defined as follows.
+
+\begin{description}[labelindent = 1.5cm, leftmargin = 1.5cm]
+	
+	\item [\code{y}] numeric response vector.
+	\item [\code{x}] optional numeric predictor matrix.
+	\item [\code{hurdle}] numeric threshold ($\psi$) for `extreme' observations of two-hurdle models. \code{Inf} for one-hurdle models.
+	\item [\code{dist}] character specification of response distribution. The function supports a choice of Poisson, negative binomial, log-normal, and generalized Pareto distributions.
+	\item [\code{dist.2}] character specification of response distribution for `extreme' observations of two-hurdle models. The function supports a choice of Poisson, negative binomial, log-normal, and generalized Pareto distributions. \code{"none"} for one-hurdle models.
+	\item [\code{control}] list of parameters for controlling the fitting process, specified by a \code{hurdle\textunderscore control()} assignment.
+	\item [\code{iters}] number of iterations for the Markov chain algorithm. 
+	\item [\code{burn}] numeric burn-in length.
+	\item [\code{nthin}] numeric thinning rate.
+	\item [\code{plots}] logical operator. \code{TRUE} to print plots. 
+	\item [\code{progress.bar}] logical operator. \code{TRUE} to print progress bar. 
+
+\end{description}
+
+{\large \textit{Additional control parameters}}
+
+Many of a \code{hurdle} function's fitting parameters are defined through a \code{hurdle\textunderscore control} list. This includes distributional priors, hyperparameters, and MCMC tuning parameters. The \code{hurdle\textunderscore control} has a usage of:
+
+\code{hurdle\textunderscore control(a, b, size, beta.prior.mean, beta.prior.sd, beta.tune, pars.tune, lam.start, mu.start, sigma.start, xi.start)}
+
+with the arguments defined as follows.
+
+\begin{description}[labelindent = 1.5cm, leftmargin = 1.5cm]
+
+	\item [\code{a}] shape parameter for Gamma($a$, $b$) prior distributions.
+	\item [\code{b}] rate parameter for Gamma($a$, $b$) prior distributions.
+	\item [\code{size}] size ($r$) parameter for NB($r$, $\mu$) likelihood distributions.
+	\item [\code{beta.prior.mean}] mean ($\mu$) for Normal($\mu$, $\sigma^{2}$) prior distributions for coefficient estimation.
+	\item [\code{beta.prior.sd}]\ standard deviation ($\sigma$) for Normal($\mu$, $\sigma^{2}$) prior distributions for coefficient estimation.
+	\item [\code{beta.tune}] MCMC tuning for regression coefficient estimation.
+	\item [\code{pars.tune}] MCMC tuning for parameter estimation.
+	\item [\code{lam.start, mu.start, sigma.start, xi.start}] initial value(s) for parameter(s) of `extreme' observations distribution.
+
+\end{description}
+
+The output of the \code{hurdle} function is a list with the elements:
+
+%______________________________________________
+\subsection{An example of use}
+
+[seabird data info] 
+
+The following code illustrates the use of \code{hurdle} to model the seabird data of species Sooty Shearwater. As indicated by Table 1, this data is both zero-inflated and exceptionally over-dispersed, and may best be fit using a GPD-hurdle model. The negative binomial distribution is specified for the ``typical'' observed counts, and ``extreme'' observations are modeled by the discrete generalized Pareto distribution. The hurdle to delineate ``extreme'' values is set as the 90th percentile of the non-zero counts (in this case, 14). The MCMC algorithm is run for 25,000 iterations with a 5,000 burn-in and thinning interval of 5. Uninformative priors and tuning parameters are used for all pieces of the model.
+
+\begin{tabular}{ |l|r| }
+	\hline
+	\multicolumn{2}{|c|}{\textbf{Avian Counts: Sooty Shearwater}} \\
+	\hline
+	\textbf{Count} &\textbf{ Frequency} \\ \hline
+	0 & 33503 \\ \hline
+	1 - 10 & 412 \\ \hline
+	11 - 100 & 88 \\ \hline
+	101 - 500 & 16 \\ \hline
+	501 + & 3 \\ \hline
+\end{tabular}
+
+Table 1: Frequency seabird counts for the species Sooty Shearwater. Non-zero counts have a range of 1 to 700 as well as a mean and median of 9.55 and 2, respectively. The resulting distribution is extremely right-skewed.
+
+How do I input/output code???
+
+\begin{CodeChunk}
+	\begin{CodeInput}
+		
+#Load in seabird (species "sosh")
+load(url("http://math.luc.edu/~ebalderama/stat388bayes_resources/sb/data/sosh.RData"))
+
+#Set a value for the second hurdle
+hurd <- quantile(Y[Y!=0], prob = 0.9)
+
+#Set control parameters		
+control <- hurdle_control(a = 1, b = 1, size = 1, beta.prior.mean = 0, beta.prior.sd = 10, pars.tune = 0.2, beta.tune = 1, lam.start = 1, mu.start = 1, sigma.start = 1, xi.start = 1)
+
+#Run function for a double-hurdle model
+d.hurdle <- hurdle(y = Y, x = X[,-1], hurd = hurd, dist = "nb", dist.2 = "gpd", control = control, iters = 25000, burn = 5000, nthin = 5, plots = T, progress.bar = T)
+	\end{CodeInput}
+\end{CodeChunk}
 
 %============================================
 \section{Discussion}
