@@ -4,4 +4,7 @@
 \BOOKMARK [2][-]{Subsection.2.1.Hurdle models.2}{Hurdle models}{Section.1.Models for count data.1}% 4
 \BOOKMARK [1][-]{Section.2.Double-hurdle models.1}{Double-hurdle models}{}% 5
 \BOOKMARK [1][-]{Section.3.Implementing hurdlr.1}{Implementing hurdlr}{}% 6
-\BOOKMARK [1][-]{Section.4.Discussion.1}{Discussion}{}% 7
+\BOOKMARK [2][-]{Subsection.4.0.Zero-inflated modeling.2}{Zero-inflated modeling}{Section.3.Implementing hurdlr.1}% 7
+\BOOKMARK [2][-]{Subsection.4.1.Hurdle modeling.2}{Hurdle modeling}{Section.3.Implementing hurdlr.1}% 8
+\BOOKMARK [2][-]{Subsection.4.2.An example of use.2}{An example of use}{Section.3.Implementing hurdlr.1}% 9
+\BOOKMARK [1][-]{Section.4.Discussion.1}{Discussion}{}% 10
