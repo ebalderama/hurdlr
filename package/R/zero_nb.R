@@ -12,20 +12,53 @@
 # mu ~ Gamma(a, b)
 
 
+#________________________________________________
+#Documentation
 
+roxygen2::roxygenise()
 
+#' Zero-Inflated Negative Binomial Regression Model
+#' 
+#' @description \code{zero_nb} is used to fit zero-inflated 
+#' negative binomial regression models to count data via Bayesian inference.
+#' 
+#' @param y numeric response vector.
+#' 
+#' @param x numeric predictor matrix.
+#' 
+#' @param a shape parameter for gamma prior distributions.
+#' 
+#' @param b rate parameter for gamma prior distributions.
+#' 
+#' @param mu.start initial value for mu parameter.
+#' 
+#' @param beta.prior.mean mu parameter for normal prior distributions.
+#' 
+#' @param beta.prior.sd standard deviation for normal prior distributions.
+#' 
+#' @param iters number of iterations for the Markov chain to run.
+#' 
+#' @param burn numeric burn-in length.
+#' 
+#' @param nthin numeric thinning rate.
+#' 
+#' @param plots logical operator. \code{TRUE} to output plots.
+#' 
+#' @param progress.bar logical operator. \code{TRUE} to print progress bar.
+#' 
+#' @details 
+#' 
+#' @return 
+#' 
+#' @author 
+#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' 
+#' @example 
+#' 
 
-#Define data loglikelihood at z = 1, z = 0
-loglike <- function(y, z, mu, size, p) {
-  
-  ll <- log(1 - p) + dnbinom(y, mu = mu, size = size, log = T)
-  ll[z==1] <- log(p[z==1])
-  return(ll)
-}
+#________________________________________________
+#Source code
 
-
-
-#MCMC start
 zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1, 
                     beta.prior.mean = 0, beta.prior.sd = 1,
                     iters = 1000, burn = 500, nthin = 1,
@@ -41,7 +74,7 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
   XB <- x%*%B
   p <- 1/(1 + exp(-XB))
   mu <- mu.start
-  ll <- loglike(y = y, z = z, mu = mu, size = size, p = p)
+  ll <- loglik_zinb(y = y, z = z, mu = mu, size = size, p = p)
   
   #Tuning
   beta.tune <- rep(0.02, x.col)
@@ -55,7 +88,7 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
   keep.mu <- rep(mu, iters)
   keep.ll <- rep(sum(ll), iters)
   keep.p <- rep(mean(p), iters)
-  
+  #MCMC start
   
   for(i in 2:iters) {for(thin in 1:nthin){
     
@@ -69,7 +102,7 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
       beta.new <- rnorm(1, beta.current, beta.tune[j])
       XB.new <- XB + x[,j]*(beta.new - beta.current)
       p.new <- 1/(1 + exp(-XB.new))
-      ll.new <- loglike(y = y, z = z, mu = mu, size = size, p = p.new)
+      ll.new <- loglik_zinb(y = y, z = z, mu = mu, size = size, p = p.new)
       
       p.ratio <- sum(ll.new) + sum(dnorm(beta.new, beta.prior.mean, beta.prior.sd, log = T)) -
         sum(ll) - sum(dnorm(beta.current, beta.prior.mean, beta.prior.sd, log = T))
@@ -89,7 +122,7 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
     P1 <- ifelse(y==0, 1, 0)*p
     P0 <- dnbinom(y, mu = mu, size = size)*(1 - p)
     z  <- rbinom(length(y), 1, P1/(P1 + P0))
-    ll <- loglike(y = y, z = z, mu = mu, size = size, p = p)
+    ll <- loglik_zinb(y = y, z = z, mu = mu, size = size, p = p)
     
     #Update mu
     
@@ -102,7 +135,7 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
     if(log(runif(1)) < mu.ratio) {
       mu <- mu.new
       mu.acc <- mu.acc + 1
-      ll <- loglike(y = y, z = z, mu = mu.new, size = size, p = p)
+      ll <- loglik_zinb(y = y, z = z, mu = mu.new, size = size, p = p)
     }
     
   }#End thinning
@@ -125,7 +158,6 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
       beta.acc <- rep(0, x.col)
       mu.acc <- att <- 0
     }
-    
     
     #Plots
     
@@ -152,36 +184,6 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
               beta = keep.beta[(burn + 1):iters,],
               ll = sum(ll)
   ))
-  
-  
-}
-
-
-#Example
-
-if(F){
-  
-  #Y data: zero-inflated negative binomial
-  rzinb <- function(n, mu, size, p = 1) {
-    y  <- rbinom(n, 1, 1 - p)
-    y[y==1] <- rnbinom(sum(y==1), mu = mu, size = size)
-    return(y)
-  }
-  
-  #Generate X and Y data
-  y <- rzinb(100, mu = 3, size = 20,  p = 0.40)
-  sum(y==0)
-  
-  #X data: random whatever
-  n <- length(y)
-  x1 <- rexp(n)
-  x2 <- runif(n, 0, 1)
-  x3 <- rnorm(n, 0, 0.1)
-  x4 <- x1 + x2 + rnorm(n, 0, 0.2)
-  x5 <- 2*x1 - 2*x2 + runif(n, -0.5, 0.5)
-  x <- cbind(x1, x2, x3, x4, x5)
-  
-  g <- zero_nb(y, x = x, size = 20, iters = 1000, burn = 200, nthin = 5, beta.prior.sd = 1)
   
   
 }

@@ -1,27 +1,32 @@
-\name{zero_poisson}
+\name{zero_nb}
 
-\alias{zero_poisson}
+\alias{zero_nb}
 
-\title{Zero-Inflated Poisson Regression Model}
+\title{Zero-Inflated Negative Binomial Regression Model}
 
 \description{
-\code{zero_poisson} is used to fit zero-inflated poisson regression models to count data via Bayesian inference.
+\code{zero_nb} is used to fit zero-inflated negative binomial regression models to count data via Bayesian inference.
 }
-
 \usage{
-zero_poisson(y, x, a = 1, b = 1, lam.start = 1, 
-             beta.prior.mean = 0, beta.prior.sd = 1,
-             iters = 1000, burn = 500, nthin = 1,
-             plots = T, progress.bar = T)
+zero_nb(y, x, size, a = 1, b = 1, mu.start = 1,
+        beta.prior.mean = 0, beta.prior.sd = 1,
+        iters = 1000, burn = 500, nthin = 1,
+        plots = T, progress.bar = T)
 }
+%- maybe also 'usage' for other objects documented here.
 
 \arguments{
-  \item{y}{
+
+\item{y}{
 numeric response vector.
 }
 
 \item{x}{
 numeric predictor matrix.
+}
+
+\item{size}{
+size parameter for negative binomial likelihood distributions.
 }
 
 \item{a}{
@@ -32,8 +37,8 @@ shape parameter for gamma prior distributions.
 rate parameter for gamma prior distributions.
 }
 
-\item{lam.start}{
-initial value for lambda parameter.
+\item{mu.start}{
+initial value for mu parameter.
 }
 
 \item{beta.prior.mean}{
@@ -83,9 +88,9 @@ logical operator. \code{TRUE} to print progress bar.
 }
 
 \author{
-Taylor Trippe <\email{ttrippe@@luc.edu}>
+Taylor Trippe <\email{ttrippe@luc.edu}>
 
-Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 
 \note{

@@ -2,10 +2,10 @@
 
 \alias{dist_ll}
 
-\title{Count Data Distributional Likelihood}
+\title{Data Distributional Likelihood for Hurdle Model Count Data Regression}
 
 \description{
-\code{dist_ll} is a likelihood fuction for various discrete distributions.
+\code{dist_ll} is the data likelihood fuction for hurdle model regression using \code{\link{hurdle}}.
 }
 
 \usage{
@@ -49,7 +49,7 @@ character specification of response distribution.
 }
 
 \item{log}{
-logical; if \code{TRUE}, probabilities p are given as log(p).
+logical operator. if \code{TRUE}, probabilities p are given as log(p).
 }
 
 \item{g.x}{

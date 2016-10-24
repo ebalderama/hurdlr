@@ -5,7 +5,7 @@
 \title{Typical Count Probability Likelihood}
 
 \description{
-%%  ~~ A concise (1-5 lines) description of what the function does. ~~
+\code{PT} is used to calculate the likelihood of a user-defined 'typical' value count observation in a double-hurdle regression model.
 }
 
 \usage{
@@ -19,11 +19,11 @@ vector of zero-count probabilities.
 }
 
 \item{q}{
-vector of 'extreme' count probabilities.
+vector of 'typical' count probabilities.
 }
   
 \item{log}{
-logical; if \code{TRUE}, probabilities \code{p} and \code{q} are given as \code{log(p)}, \code{log(q)}.
+logical operator. If \code{TRUE}, probabilities \code{p} and \code{q} are given as \code{log(p)}, \code{log(q)}.
 }
 
 }
