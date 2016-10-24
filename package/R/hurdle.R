@@ -14,12 +14,56 @@
 #                 {
 #                 {   q*(1-p)*g(x|theta),           yi >= psi
 
-file.sources = list.files("F:/Balderama/hurdlr/R",
-                          pattern = "*.R$", full.names = TRUE,
-                          ignore.case = TRUE)
-sapply(file.sources, source, .GlobalEnv)
 
-#MCMC start
+#________________________________________________
+#Documentation
+
+roxygen2::roxygenise()
+
+#' Hurdle Model Count Data Regression
+#' 
+#' @description \code{hurdle} is used to fit single or 
+#' double-hurdle regression models to count data via Bayesian inference.
+#' 
+#' @param y numeric response vector.
+#' 
+#' @param x numeric predictor matrix.
+#' 
+#' @param hurd numeric threshold for 'extreme' observations of two-hurdle models. 
+#' \code{Inf} for one-hurdle models.
+#' 
+#' @param dist character specification of response distribution.
+#' 
+#' @param dist.2 character specification of response distribution for 
+#' 'extreme' observations of two-hurdle models.
+#' 
+#' @param control list of parameters for controlling the fitting process, 
+#' specified by \code{\link{hurdle_control}}.
+#' 
+#' @param iters number of iterations for the Markov chain to run.
+#' 
+#' @param burn numeric burn-in length.
+#' 
+#' @param nthin numeric thinning rate.
+#' 
+#' @param plots logical operator. \code{TRUE} to output plots.
+#' 
+#' @param progress.bar logical operator. \code{TRUE} to print progress bar.
+#' 
+#' @details 
+#' 
+#' @return 
+#' 
+#' @author 
+#' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
+#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' 
+#' @example 
+#' 
+
+#________________________________________________
+#Source code
+
 hurdle <- function(y, x = NULL, hurd = Inf,
                    dist = c("poisson", "nb", "lognormal", "gpd"),
                    dist.2 = c("none", "gpd", "poisson", "lognormal", "nb"),
@@ -99,6 +143,7 @@ hurdle <- function(y, x = NULL, hurd = Inf,
   ll[0 < y & y < hurd] <- pT + LT
   ll[y >= hurd] <- pE + LE
 
+  #MCMC start
   for(i in 2:iters){
     for(thin in 1:nthin){
 

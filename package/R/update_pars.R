@@ -1,4 +1,69 @@
 
+#________________________________________________
+#Documentation
+
+roxygen2::roxygenise()
+
+#' MCMC Third-Component Parameter Update Function for Hurdle Model Count Data
+#' Regression
+#' 
+#' @description MCMC algorithm for updating the third-component likelihood 
+#' parameters in hurdle model regression using \code{\link{hurdle}}.
+#' 
+#' @param y numeric response vector of observations within the bounds of the 
+#' third component of the likelihood function, \eqn{y[y \geq hurd]}.
+#' 
+#' @param hurd numeric threshold for 'extreme' observations of two-hurdle models.
+#' 
+#' @param dist character specification of response distribution for the third 
+#' component of the likelihood function.
+#' 
+#' @param like.part numeric vector of the current third-component likelihood values.
+#' 
+#' @param a shape parameter for gamma prior distributions.
+#' 
+#' @param b rate parameter for gamma prior distributions.
+#' 
+#' @param size size parameter for negative binomial likelihood distributions.
+#' 
+#' @param lam current value for the poisson likelihood lambda parameter.
+#' 
+#' @param mu current value for the negative binomial or log normal likelihood 
+#' mu parameter.
+#' 
+#' @param xi current value for the generalized pareto likelihood xi parameter.
+#' 
+#' @param sigma current value for the generalized pareto likelihood sigma 
+#' parameter.
+#' 
+#' @param lam.acc, mu.acc, xi.acc, sigma.acc current MCMC values for third-component 
+#' parameter acceptance rates.
+#' 
+#' @param lam.tune, mu.tune, xi.tune, sigma.tune current MCMC tuning values for 
+#' each third-component parameter. 
+#' 
+#' @param g.x logical operator. \code{TRUE} if operating within the third component 
+#' of the likelihood function (the likelihood of 'extreme' observations).
+#' 
+#' @details 
+#' 
+#' @return 
+#' 
+#' @author 
+#' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
+#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' 
+#' @seealso 
+#' 
+#' \code{\link{hurdle}} \cr
+#' \code{\link{dist_ll}}
+#' 
+#' @example 
+#' 
+
+#________________________________________________
+#Source code
+
 update_pars <- function(y, hurd, dist, like.part,
                         a, b, size, lam, mu, xi, sigma,
                         lam.acc, mu.acc, xi.acc, sigma.acc,

@@ -1,4 +1,66 @@
 
+#________________________________________________
+#Documentation
+
+roxygen2::roxygenise()
+
+#' MCMC Second-Component Parameter Update Function for Hurdle Model Count Data
+#' Regression
+#' 
+#' @description MCMC algorithm for updating the second-component likelihood 
+#' parameters in hurdle model regression using \code{\link{hurdle}}.
+#' 
+#' @param y numeric response vector of observations within the bounds of the 
+#' second component of the likelihood function, \eqn{y[0 < y & y < hurd]}
+#' 
+#' @param x optional numeric predictor matrix for response observations within 
+#' the bounds of the second component of the likelihood function, 
+#' \eqn{y[0 < y & y < hurd]}.
+#' 
+#' @param hurd numeric threshold for 'extreme' observations of two-hurdle models.
+#' 
+#' @param dist character specification of response distribution for the third 
+#' component of the likelihood function.
+#' 
+#' @param like.part numeric vector of the current third-component likelihood values.
+#' 
+#' @param beta.prior.mean mu parameter for normal prior distributions.
+#' 
+#' @param beta.prior.sd standard deviation for normal prior distributions.
+#' 
+#' @param beta numeric matrix of current regression coefficient parameter values.
+#' 
+#' @param XB \eqn{x*beta[,1]} product matrix for response observations within the bounds 
+#' of the second component of the likelihood function, \eqn{y[0 < y & y < hurd]}.
+#' 
+#' @param beta.acc numeric matrix of current MCMC acceptance rates for 
+#' regression coefficient parameters.
+#' 
+#' @parm beta.tune numeric matrix of current MCMC tuning values for regression 
+#' coefficient estimation.
+#' 
+#' @param g.x logical operator. \code{TRUE} if operating within the third component 
+#' of the likelihood function (the likelihood of 'extreme' observations).
+#' 
+#' @details 
+#' 
+#' @return 
+#' 
+#' @author 
+#' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
+#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' 
+#' @seealso 
+#' 
+#' \code{\link{hurdle}} \cr
+#' \code{\link{dist_ll}}
+#' 
+#' @example 
+#' 
+
+#________________________________________________
+#Source code
+
 update_beta <- function(y, x, hurd, dist, like.part,
                         beta.prior.mean, beta.prior.sd,
                         beta, XB, beta.acc, beta.tune,
