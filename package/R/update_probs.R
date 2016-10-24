@@ -1,4 +1,69 @@
 
+
+#________________________________________________
+#Documentation
+
+roxygen2::roxygenise()
+
+#' MCMC Probability Update Function for Hurdle Model Count Data Regression
+#' 
+#' @description MCMC algorithm for updating the likelihood probabilities in 
+#' hurdle model regression using \code{\link{hurdle}}.
+#' 
+#' @param y numeric response vector.
+#' 
+#' @param x optional numeric predictor matrix.
+#' 
+#' @param hurd numeric threshold for 'extreme' observations of two-hurdle 
+#' models.
+#' 
+#' @param p numeric vector of current 'p' probability parameter values for 
+#' zero-value observations. 
+#' 
+#' @param q numeric vector of current 'q' probability parameter values for 
+#' 'extreme' observations. 
+#' 
+#' @param beta.prior.mean mu parameter for normal prior distributions.
+#' 
+#' @param beta.prior.sd standard deviation for normal prior distributions.
+#' 
+#' @param pZ numeric vector of current 'zero probability' likelihood values.
+#' 
+#' @param pT numeric vector of current 'typical probability' likelihood values.
+#' 
+#' @param pE numeric vector of current 'extreme probability' likelihood values.
+#' 
+#' @param beta numeric matrix of current regression coefficient parameter values.
+#' 
+#' @param XB2 \eqn{x*beta[,2]} product matrix.
+#' 
+#' @param XB3 \eqn{x*beta[,3]} product matrix.
+#' 
+#' @param beta.acc numeric matrix of current MCMC acceptance rates for 
+#' regression coefficient parameters.
+#' 
+#' @parm beta.tune numeric matrix of current MCMC tuning values for regression 
+#' coefficient estimation.
+#' 
+#' @details
+#' 
+#' @return 
+#' 
+#' @author 
+#' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
+#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' 
+#' @seealso 
+#' 
+#' \code{\link{hurdle}} \cr
+#' \code{\link{dist_ll}}
+#' 
+#' @example 
+#' 
+
+#________________________________________________
+#Source code
+
 update_probs <- function(y, x, hurd, p, q,
                          beta.prior.mean, beta.prior.sd,
                          pZ, pT, pE,

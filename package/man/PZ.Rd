@@ -19,7 +19,7 @@ vector of zero-count probabilities.
 }
   
 \item{log}{
-logical; if \code{TRUE}, probabilities \code{p} are given as \code{log(p)}.
+logicaloperator. If \code{TRUE}, probabilities \code{p} are given as \code{log(p)}.
 }
 
 }

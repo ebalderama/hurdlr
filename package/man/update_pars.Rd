@@ -19,7 +19,7 @@ update_pars(y, hurd, dist, like.part,
 \arguments{
 
 \item{y}{
-numeric response vector of observations within the bounds of the third component of the likelihood function, \eqn{y[y ??? hurd]}.
+numeric response vector of observations within the bounds of the third component of the likelihood function, \eqn{y[y \geq hurd]}.
 }
 
 \item{hurd}{

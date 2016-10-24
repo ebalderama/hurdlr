@@ -12,19 +12,54 @@
 # lambda ~ Gamma(a, b)
 
 
+#________________________________________________
+#Documentation
 
+roxygen2::roxygenise()
 
-#Define data loglikelihood at z = 1, z = 0
-loglike <- function(y, z, lam, p) {
-  
-  ll <- log(1 - p) + dpois(y, lam, log = T)
-  ll[z==1] <- log(p[z==1])
-  return(ll)
-}
+#' Zero-Inflated Poisson Regression Model
+#' 
+#' @description \code{zero_poisson} is used to fit zero-inflated 
+#' poisson regression models to count data via Bayesian inference.
+#' 
+#' @param y numeric response vector.
+#' 
+#' @param x numeric predictor matrix.
+#' 
+#' @param a shape parameter for gamma prior distributions.
+#' 
+#' @param b rate parameter for gamma prior distributions.
+#' 
+#' @param lam.start initial value for lambda parameter.
+#' 
+#' @param beta.prior.mean mu parameter for normal prior distributions.
+#' 
+#' @param beta.prior.sd standard deviation for normal prior distributions.
+#' 
+#' @param iters number of iterations for the Markov chain to run.
+#' 
+#' @param burn numeric burn-in length.
+#' 
+#' @param nthin numeric thinning rate.
+#' 
+#' @param plots logical operator. \code{TRUE} to output plots.
+#' 
+#' @param progress.bar logical operator. \code{TRUE} to print progress bar.
+#' 
+#' @details 
+#' 
+#' @return 
+#' 
+#' @author 
+#' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
+#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' 
+#' @example 
+#' 
 
+#________________________________________________
+#Source code
 
-
-#MCMC start
 zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
                          beta.prior.mean = 0, beta.prior.sd = 1,
                          iters = 1000, burn = 500, nthin = 1,
@@ -40,7 +75,7 @@ zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
   XB <- x%*%B
   p <- 1/(1 + exp(-XB))
   lam <- lam.start
-  ll <- loglike(y = y, z = z, lam = lam, p = p)
+  ll <- loglik_zip(y = y, z = z, lam = lam, p = p)
   
   #Tuning
   beta.tune <- rep(0.02, x.col)
@@ -55,7 +90,7 @@ zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
   keep.ll <- rep(sum(ll), iters)
   keep.p <- rep(mean(p), iters)
   
-  
+  #MCMC start
   for(i in 2:iters) {for(thin in 1:nthin){
     
     att <- att + 1
@@ -68,7 +103,7 @@ zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
       beta.new <- rnorm(1, beta.current, beta.tune[j])
       XB.new <- XB + x[,j]*(beta.new - beta.current)
       p.new <- 1/(1 + exp(-XB.new))
-      ll.new <- loglike(y = y, z = z, lam = lam, p = p.new)
+      ll.new <- loglik_zip(y = y, z = z, lam = lam, p = p.new)
       
       p.ratio <- sum(ll.new) + sum(dnorm(beta.new, beta.prior.mean, beta.prior.sd, log = T)) - 
         sum(ll) - sum(dnorm(beta.current, beta.prior.mean, beta.prior.sd, log = T))
@@ -88,7 +123,7 @@ zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
     P1 <- ifelse(y==0, 1, 0)*p
     P0 <- dpois(y, lam)*(1 - p)
     z  <- rbinom(length(y), 1, P1/(P1 + P0))
-    ll <- loglike(y = y, z = z, lam = lam, p = p)
+    ll <- loglik_zip(y = y, z = z, lam = lam, p = p)
     
     #Update lambda
     
@@ -101,7 +136,7 @@ zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
     if(log(runif(1)) < lam.ratio) {
       lam <- lam.new
       lam.acc <- lam.acc + 1
-      ll <- loglike(y = y, z = z, lam = lam.new, p = p)
+      ll <- loglik_zip(y = y, z = z, lam = lam.new, p = p)
     }
     
   }#End thinning
@@ -155,31 +190,3 @@ zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
 }
 
 
-#Example
-
-if(F){
-  
-  #Y data: zero-inflated poisson
-  rzip <- function(n, lambda, p = 1) {
-    y  <- rbinom(n, 1, 1 - p)
-    y[y==1] <- rpois(sum(y==1), lambda)
-    return(y)
-  }  
-  
-  #Generate X and Y data
-  y <- rzip(100, lambda = 3, p = 0.20)
-  sum(y==0)
-  
-  #X data: random whatever
-  n <- length(y)
-  x1 <- rexp(n)
-  x2 <- runif(n, 0, 1)
-  x3 <- rnorm(n, 0, 0.1)
-  x4 <- x1 + x2 + rnorm(n, 0, 0.2)
-  x5 <- 2*x1 - 2*x2 + runif(n, -0.5, 0.5)
-  x <- cbind(x1, x2, x3, x4, x5)
-  
-  g <- zero_poisson(y, x = x, iters = 1000, burn = 200, nthin = 5, beta.prior.sd = 1)
-  
-  
-} 

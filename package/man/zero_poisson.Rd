@@ -83,9 +83,9 @@ logical operator. \code{TRUE} to print progress bar.
 }
 
 \author{
-Taylor Trippe <\email{ttrippe@luc.edu}>
+Taylor Trippe <\email{ttrippe@@luc.edu}>
 
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
 }
 
 \note{

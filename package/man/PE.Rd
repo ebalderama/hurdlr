@@ -5,7 +5,7 @@
 \title{Extreme Count Probability Likelihood}
 
 \description{
-\code{PE} is used to calculate the likelihood of an 'extreme' value count observation in a double-hurdle regression model.
+\code{PE} is used to calculate the likelihood of a user-defined 'extreme' value count observation in a double-hurdle regression model.
 }
 
 \usage{
@@ -23,7 +23,7 @@ vector of 'extreme' count probabilities.
 }
   
 \item{log}{
-logical; if \code{TRUE}, probabilities \code{p} and \code{q} are given as \code{log(p)}, \code{log(q)}.
+logical operator. If \code{TRUE}, probabilities \code{p} and \code{q} are given as \code{log(p)}, \code{log(q)}.
 }
 
 }
