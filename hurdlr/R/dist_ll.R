@@ -2,7 +2,7 @@
 #Documentation
 
 
-#' Data Distributional Likelihood for Hurdle Model Count Data Regression
+#' Distributional Likelihood for Hurdle Model Count Data Regression
 #' 
 #' @description \code{dist_ll} is the data likelihood fuction for hurdle model 
 #' regression using \code{\link{hurdle}}.
@@ -34,7 +34,8 @@
 #' 
 #' @details
 #' 
-#' @return 
+#' @return The log-likelihood of the zero-inflated Poisson fit for the
+#' current iteration of the MCMC algorithm.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr

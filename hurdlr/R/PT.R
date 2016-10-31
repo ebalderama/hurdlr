@@ -16,7 +16,7 @@
 #' 
 #' @details  
 #' 
-#' @return 
+#' @return A vector of probabilities.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr

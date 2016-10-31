@@ -20,6 +20,8 @@
 #' 
 #' @seealso \code{\link{hurdle}} 
 #' 
+
+#Quantile function of GPD
 qgpd <- function(p, mu = 0, sigma = 1, xi = 1, lower.tail = T){
   options(warn = -1)
   if(lower.tail == F){p <- 1 - p}

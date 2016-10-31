@@ -9,14 +9,12 @@
 #' 
 #' @param p vector of zero-count probabilities.
 #' 
-#' @param q vector of 'extreme' count probabilities.
-#' 
 #' @param log logical operator. If \code{TRUE}, probabilities \code{p} 
 #' and \code{q} are given as \code{log(p)}, \code{log(q)}.
 #' 
 #' @details  
 #' 
-#' @return 
+#' @return A vector of probabilities.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr

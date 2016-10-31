@@ -44,7 +44,10 @@
 #' 
 #' @details
 #' 
-#' @return 
+#' @return A list of MCMC-updated regression coefficients for the estimation of 
+#' the parameters 'p' (the probability of a zero-value observation) and 'q' 
+#' (the probability of an 'extreme' observation) as well as each coefficient's 
+#' MCMC acceptance ratio.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr

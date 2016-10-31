@@ -1,43 +1,40 @@
-#' Define zero-inflated poisson data loglikelihood at z = 1, z = 0
+#________________________________________________
+#Documentation
+
+
+#' Zero-inflated Poisson Data Likelihood
 #' 
-#' @description \code{hurdle} is used to fit single or 
-#' double-hurdle regression models to count data via Bayesian inference.
+#' @description Data likelihood fuction for zero-inflated Poisson model 
+#' regression using \code{\link{zero_poisson}}.
 #' 
 #' @param y numeric response vector.
 #' 
-#' @param x numeric predictor matrix.
+#' @param z vector of binary operators. \code{z == 0} for observations 
+#' considered belnging to the negative binomial distribution, \code{z == 1} 
+#' for observations considered to be 'extra' zeros.
 #' 
-#' @param hurd numeric threshold for 'extreme' observations of two-hurdle models. 
-#' \code{Inf} for one-hurdle models.
+#' @param lam current value for the Poisson likelihood lambda parameter.
 #' 
-#' @param dist character specification of response distribution.
-#' 
-#' @param dist.2 character specification of response distribution for 
-#' 'extreme' observations of two-hurdle models.
-#' 
-#' @param control list of parameters for controlling the fitting process, 
-#' specified by \code{\link{hurdle_control}}.
-#' 
-#' @param iters number of iterations for the Markov chain to run.
-#' 
-#' @param burn numeric burn-in length.
-#' 
-#' @param nthin numeric thinning rate.
-#' 
-#' @param plots logical operator. \code{TRUE} to output plots.
-#' 
-#' @param progress.bar logical operator. \code{TRUE} to print progress bar.
+#' @param p vector of 'extra' zero-count probabilities.
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return The log-likelihood of the zero-inflated Poisson fit for the
+#' current iteration of the MCMC algorithm.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
+#' @seealso \code{\link{zero_poisson}}
+#' 
 #' @example 
 #' 
+
+#________________________________________________
+#Source code
+
+#Define zero-inflated Poisson data loglikelihood at z = 1, z = 0 
 loglik_zip <- function(y, z, lam, p) {
   
   ll <- log(1 - p) + dpois(y, lam, log = T)

@@ -9,7 +9,7 @@
 #' parameters in hurdle model regression using \code{\link{hurdle}}.
 #' 
 #' @param y numeric response vector of observations within the bounds of the 
-#' third component of the likelihood function, \eqn{y[y \geq hurd]}.
+#' third component of the likelihood function, \eqn{y[y \ge hurd]}.
 #' 
 #' @param hurd numeric threshold for 'extreme' observations of two-hurdle models.
 #' 
@@ -34,10 +34,10 @@
 #' @param sigma current value for the generalized pareto likelihood sigma 
 #' parameter.
 #' 
-#' @param lam.acc, mu.acc, xi.acc, sigma.acc current MCMC values for third-component 
+#' @param lam.acc,mu.acc,xi.acc,sigma.acc current MCMC values for third-component 
 #' parameter acceptance rates.
 #' 
-#' @param lam.tune, mu.tune, xi.tune, sigma.tune current MCMC tuning values for 
+#' @param lam.tune,mu.tune,xi.tune,sigma.tune current MCMC tuning values for 
 #' each third-component parameter. 
 #' 
 #' @param g.x logical operator. \code{TRUE} if operating within the third component 
@@ -45,7 +45,8 @@
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return A list of MCMC-updated likelihood estimator(s) for the third-component
+#' parameter(s) and each parameter's MCMC acceptance ratio.  
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
