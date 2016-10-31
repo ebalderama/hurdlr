@@ -39,7 +39,7 @@
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
-#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @seealso \code{\link{hurdle}}
 #' 
