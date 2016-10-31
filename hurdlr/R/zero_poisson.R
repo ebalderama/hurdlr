@@ -47,11 +47,18 @@
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return \code{zero_poisson} returns a list which includes the items
+#' \describe{
+#'    \item{lam}{numeric vector; posterior distribution of lambda parameter}
+#'    \item{beta}{numeric matrix; posterior distributions of regression coefficients}
+#'    \item{p}{numeric vector; posterior distribution of parameter 'p', the 
+#'    probability of a given zero observation belonging to the model's zero component}
+#'    \item{ll}{numeric vector; posterior log-likelihood}    
+#' }
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
-#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @example 
 #' 
@@ -183,7 +190,8 @@ zero_poisson <- function(y, x, a = 1, b = 1, lam.start = 1,
   
   return(list(lam = keep.lam[(burn + 1):iters],
               beta = keep.beta[(burn + 1):iters,],
-              ll = sum(ll)
+              p = keep.p[(burn + 1):iters,],
+              ll = keep.ll[(burn + 1):iters,]
   ))
   
 }

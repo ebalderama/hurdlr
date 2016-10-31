@@ -47,10 +47,18 @@
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return \code{zero_nb} returns a list which includes the items
+#' \describe{
+#'    \item{mu}{numeric vector; posterior distribution of mu parameter}
+#'    \item{beta}{numeric matrix; posterior distributions of regression coefficients}
+#'    \item{p}{numeric vector; posterior distribution of parameter 'p', the 
+#'    probability of a given zero observation belonging to the model's zero component}
+#'    \item{ll}{numeric vector; posterior log-likelihood}    
+#' }
 #' 
 #' @author 
-#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
+#' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @example 
 #' 
@@ -82,13 +90,13 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
   mu.acc <- 0
   att <- 0
   
-  #Create matrix of MCMC values for all parameters B, mubda
+  #Create matrix of MCMC values for all parameters B, mu
   keep.beta <- matrix(0, iters, length(B))
   keep.mu <- rep(mu, iters)
   keep.ll <- rep(sum(ll), iters)
   keep.p <- rep(mean(p), iters)
-  #MCMC start
   
+  #MCMC start
   for(i in 2:iters) {for(thin in 1:nthin){
     
     att <- att + 1
@@ -181,7 +189,8 @@ zero_nb <- function(y, x, size, a = 1, b = 1, mu.start = 1,
   
   return(list(mu = keep.mu[(burn + 1):iters],
               beta = keep.beta[(burn + 1):iters,],
-              ll = sum(ll)
+              p = keep.p[(burn + 1):iters,],
+              ll = keep.ll[(burn + 1):iters,]
   ))
   
   

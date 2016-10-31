@@ -16,10 +16,12 @@
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
-#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @seealso \code{\link{hurdle}} 
 #' 
+
+#Quantile function of GPD
 qgpd <- function(p, mu = 0, sigma = 1, xi = 1, lower.tail = T){
   options(warn = -1)
   if(lower.tail == F){p <- 1 - p}

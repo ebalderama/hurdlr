@@ -1,44 +1,42 @@
-#' Define zero-inflated negative binomial data loglikelihood at z = 1, z = 0
+#________________________________________________
+#Documentation
+
+
+#' Zero-inflated Negative Binomial Data Likelihood
 #' 
-#' @description \code{hurdle} is used to fit single or 
-#' double-hurdle regression models to count data via Bayesian inference.
+#' @description Data likelihood fuction for zero-inflated negative binomial 
+#' model regression using \code{\link{zero_nb}}.
 #' 
 #' @param y numeric response vector.
 #' 
-#' @param x numeric predictor matrix.
+#' @param z vector of binary operators. \code{z == 0} for observations 
+#' considered belnging to the negative binomial distribution, \code{z == 1} 
+#' for observations considered to be 'extra' zeros.
 #' 
-#' @param hurd numeric threshold for 'extreme' observations of two-hurdle models. 
-#' \code{Inf} for one-hurdle models.
+#' @param mu current value for the negative binomial likelihood mu parameter.
 #' 
-#' @param dist character specification of response distribution.
+#' @param size size parameter for negative binomial distribution.
 #' 
-#' @param dist.2 character specification of response distribution for 
-#' 'extreme' observations of two-hurdle models.
-#' 
-#' @param control list of parameters for controlling the fitting process, 
-#' specified by \code{\link{hurdle_control}}.
-#' 
-#' @param iters number of iterations for the Markov chain to run.
-#' 
-#' @param burn numeric burn-in length.
-#' 
-#' @param nthin numeric thinning rate.
-#' 
-#' @param plots logical operator. \code{TRUE} to output plots.
-#' 
-#' @param progress.bar logical operator. \code{TRUE} to print progress bar.
+#' @param p vector of 'extra' zero-count probabilities.
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return The log-likelihood of the zero-inflated negative binomial fit 
+#' for the current iteration of the MCMC algorithm.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
-#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' 
+#' @seealso \code{\link{zero_nb}}
 #' 
 #' @example 
 #' 
 
+#________________________________________________
+#Source code
+
+#Define zero-inflated negative binomial data loglikelihood at z = 1, z = 0
 loglik_zinb <- function(y, z, mu, size, p) {
   
   ll <- log(1 - p) + dnbinom(y, mu = mu, size = size, log = T)

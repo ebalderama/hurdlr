@@ -1,45 +1,39 @@
-#' Probability distribution function of discrete log normal
+#________________________________________________
+#Documentation
+
+
+#' Density Function for Discrete Log Normal Distribution
 #' 
-#' @description \code{hurdle} is used to fit single or 
-#' double-hurdle regression models to count data via Bayesian inference.
+#' @description Density function of the discrete log normal distribution
+#' whose logarithm has mean equal to \code{meanlog} and standard deviation 
+#' equal to \code{sdlog}.
 #' 
-#' @param y numeric response vector.
+#' @param x vector of quantiles.
 #' 
-#' @param x numeric predictor matrix.
+#' @param meanlog mean of the distribution on the log scale.
 #' 
-#' @param hurd numeric threshold for 'extreme' observations of two-hurdle models. 
-#' \code{Inf} for one-hurdle models.
+#' @param sdlog standard deviation of the distribution on the log scale.
 #' 
-#' @param dist character specification of response distribution.
-#' 
-#' @param dist.2 character specification of response distribution for 
-#' 'extreme' observations of two-hurdle models.
-#' 
-#' @param control list of parameters for controlling the fitting process, 
-#' specified by \code{\link{hurdle_control}}.
-#' 
-#' @param iters number of iterations for the Markov chain to run.
-#' 
-#' @param burn numeric burn-in length.
-#' 
-#' @param nthin numeric thinning rate.
-#' 
-#' @param plots logical operator. \code{TRUE} to output plots.
-#' 
-#' @param progress.bar logical operator. \code{TRUE} to print progress bar.
+#' @param log logical; if \code{TRUE}, probabilities p are given 
+#' as log(p).
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return Discrete log-normal distributional density.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
-#' Dr. Earvin Balderama <\email{ebalderama@@luc.edu}>
+#' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @example 
 #' 
-mlnorm <- function(y, meanlog = 0, sdlog = 1, log = T){
-  pmf <- plnorm(y + 0.5, meanlog, sdlog) - plnorm( y - 0.5, meanlog, sdlog)
+
+#________________________________________________
+#mlnorm()
+
+#Probability distribution function of discrete log normal
+mlnorm <- function(x, meanlog = 0, sdlog = 1, log = T){
+  pmf <- plnorm(x + 0.5, meanlog, sdlog) - plnorm(x - 0.5, meanlog, sdlog)
   if(log){return(log(pmf))}
     else{return(pmf)}
 }
