@@ -2,42 +2,28 @@
 % Please edit documentation in R/loglik_zip.R
 \name{loglik_zip}
 \alias{loglik_zip}
-\title{Define zero-inflated poisson data loglikelihood at z = 1, z = 0}
+\title{Zero-inflated Poisson Data Likelihood}
 \usage{
 loglik_zip(y, z, lam, p)
 }
 \arguments{
 \item{y}{numeric response vector.}
 
-\item{x}{numeric predictor matrix.}
+\item{z}{vector of binary operators. \code{z == 0} for observations 
+considered belnging to the negative binomial distribution, \code{z == 1} 
+for observations considered to be 'extra' zeros.}
 
-\item{hurd}{numeric threshold for 'extreme' observations of two-hurdle models. 
-\code{Inf} for one-hurdle models.}
+\item{lam}{current value for the Poisson likelihood lambda parameter.}
 
-\item{dist}{character specification of response distribution.}
-
-\item{dist.2}{character specification of response distribution for 
-'extreme' observations of two-hurdle models.}
-
-\item{control}{list of parameters for controlling the fitting process, 
-specified by \code{\link{hurdle_control}}.}
-
-\item{iters}{number of iterations for the Markov chain to run.}
-
-\item{burn}{numeric burn-in length.}
-
-\item{nthin}{numeric thinning rate.}
-
-\item{plots}{logical operator. \code{TRUE} to output plots.}
-
-\item{progress.bar}{logical operator. \code{TRUE} to print progress bar.}
+\item{p}{vector of 'extra' zero-count probabilities.}
 }
 \value{
-
+The log-likelihood of the zero-inflated Poisson fit for the
+current iteration of the MCMC algorithm.
 }
 \description{
-\code{hurdle} is used to fit single or 
-double-hurdle regression models to count data via Bayesian inference.
+Data likelihood fuction for zero-inflated Poisson model 
+regression using \code{\link{zero_poisson}}.
 }
 \details{
 
@@ -47,6 +33,9 @@ double-hurdle regression models to count data via Bayesian inference.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
+}
+\seealso{
+\code{\link{zero_poisson}}
 }
 

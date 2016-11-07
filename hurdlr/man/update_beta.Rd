@@ -42,7 +42,9 @@ coefficient estimation.}
 of the likelihood function (the likelihood of 'extreme' observations).}
 }
 \value{
-
+A list of MCMC-updated regression coefficients for the estimation of 
+the second-component likelihood parameter as well as each coefficient's MCMC
+acceptance ratio.
 }
 \description{
 MCMC algorithm for updating the second-component likelihood 
@@ -56,7 +58,7 @@ parameters in hurdle model regression using \code{\link{hurdle}}.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 \seealso{
 \code{\link{hurdle}} \cr

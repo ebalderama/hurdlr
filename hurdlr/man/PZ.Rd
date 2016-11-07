@@ -11,11 +11,9 @@ PZ(p, log = T)
 
 \item{log}{logical operator. If \code{TRUE}, probabilities \code{p} 
 and \code{q} are given as \code{log(p)}, \code{log(q)}.}
-
-\item{q}{vector of 'extreme' count probabilities.}
 }
 \value{
-
+A vector of probabilities.
 }
 \description{
 \code{PZ} is used to calculate the likelihood of a 
@@ -26,7 +24,7 @@ zero-value count observation in a single or double-hurdle regression model.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 \seealso{
 \code{\link{hurdle}}

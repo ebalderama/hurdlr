@@ -10,7 +10,7 @@ update_pars(y, hurd, dist, like.part, a, b, size, lam, mu, xi, sigma, lam.acc,
 }
 \arguments{
 \item{y}{numeric response vector of observations within the bounds of the 
-third component of the likelihood function, \eqn{y[y \geq hurd]}.}
+third component of the likelihood function, \eqn{y[y \ge hurd]}.}
 
 \item{hurd}{numeric threshold for 'extreme' observations of two-hurdle models.}
 
@@ -35,17 +35,18 @@ mu parameter.}
 \item{sigma}{current value for the generalized pareto likelihood sigma 
 parameter.}
 
-\item{lam.acc, }{mu.acc, xi.acc, sigma.acc current MCMC values for third-component 
+\item{lam.acc, mu.acc, xi.acc, sigma.acc}{current MCMC values for third-component 
 parameter acceptance rates.}
 
-\item{lam.tune, }{mu.tune, xi.tune, sigma.tune current MCMC tuning values for 
+\item{lam.tune, mu.tune, xi.tune, sigma.tune}{current MCMC tuning values for 
 each third-component parameter.}
 
 \item{g.x}{logical operator. \code{TRUE} if operating within the third component 
 of the likelihood function (the likelihood of 'extreme' observations).}
 }
 \value{
-
+A list of MCMC-updated likelihood estimator(s) for the third-component
+parameter(s) and each parameter's MCMC acceptance ratio.
 }
 \description{
 MCMC algorithm for updating the third-component likelihood 
@@ -59,7 +60,7 @@ parameters in hurdle model regression using \code{\link{hurdle}}.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 \seealso{
 \code{\link{hurdle}} \cr

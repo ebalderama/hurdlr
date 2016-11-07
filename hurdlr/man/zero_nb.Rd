@@ -34,7 +34,14 @@ zero_nb(y, x, size, a = 1, b = 1, mu.start = 1, beta.prior.mean = 0,
 \item{progress.bar}{logical operator. \code{TRUE} to print progress bar.}
 }
 \value{
-
+\code{zero_nb} returns a list which includes the items
+\describe{
+   \item{mu}{numeric vector; posterior distribution of mu parameter}
+   \item{beta}{numeric matrix; posterior distributions of regression coefficients}
+   \item{p}{numeric vector; posterior distribution of parameter 'p', the 
+   probability of a given zero observation belonging to the model's zero component}
+   \item{ll}{numeric vector; posterior log-likelihood}    
+}
 }
 \description{
 \code{zero_nb} is used to fit zero-inflated 
@@ -47,6 +54,7 @@ negative binomial regression models to count data via Bayesian inference.
 
 }
 \author{
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Taylor Trippe <\email{ttrippe@luc.edu}> \cr
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/dist_ll.R
 \name{dist_ll}
 \alias{dist_ll}
-\title{Data Distributional Likelihood for Hurdle Model Count Data Regression}
+\title{Distributional Likelihood for Hurdle Model Count Data Regression}
 \usage{
 dist_ll(y, hurd = Inf, lam = NULL, size = 1, mu = NULL, xi = NULL,
   sigma = NULL, dist = c("poisson", "nb", "lognormal", "gpd", "none"),
@@ -35,7 +35,8 @@ component of the likelihood function (the likelihood of 'extreme' observations).
 as log(p).}
 }
 \value{
-
+The log-likelihood of the zero-inflated Poisson fit for the
+current iteration of the MCMC algorithm.
 }
 \description{
 \code{dist_ll} is the data likelihood fuction for hurdle model 
@@ -49,7 +50,7 @@ regression using \code{\link{hurdle}}.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 \seealso{
 \code{\link{hurdle}}

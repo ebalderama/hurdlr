@@ -15,7 +15,7 @@ PE(p, q, log = T)
 and \code{q} are given as \code{log(p)}, \code{log(q)}.}
 }
 \value{
-
+A vector of probabilities.
 }
 \description{
 \code{PE} is used to calculate the likelihood of a user-defined
@@ -26,7 +26,7 @@ and \code{q} are given as \code{log(p)}, \code{log(q)}.}
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 \seealso{
 \code{\link{hurdle}}

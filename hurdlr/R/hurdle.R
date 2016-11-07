@@ -57,7 +57,33 @@
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
-#' @example 
+#' @examples
+#' #Generate some data:
+#' p=0.5; q=0.25; lam=3;
+#' mu=10; sigma=7; xi=0.75;
+#' n=200
+#'
+#' set.seed(2016)
+#' y <- rbinom(n,1,p)
+#' nz <- sum(1-y)
+#' extremes <- rbinom(sum(y),1,q)
+#' ne <- sum(extremes)
+#' nt <- n-nz-ne
+#' yt <- sample(mu-1,nt,replace=T,prob=dpois(1:(mu-1),3)/(ppois(mu-1,lam)-ppois(0,lam)))
+#' yz <- round(rgpd(nz,mu,sigma,xi))
+#' y[y==1] <- c(yt,yz)
+#' 
+#' m1 <- hurdle(y)
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
 #' 
 
 #________________________________________________
@@ -72,9 +98,11 @@ hurdle <- function(y, x = NULL, hurd = Inf,
 
   #Initial values
   N <- length(y)
+  dist <- match.arg(dist)
+  dist.2 <- match.arg(dist.2)
   hurd <- ifelse(dist.2 == "none", Inf, hurd)
   pb <- txtProgressBar(min = 0, max = iters, style = 3)
-  x <- cbind(rep(1, N), X)
+  x <- cbind(rep(1, N), x)
   x <- as.matrix(x)
   x.col <- ncol(x)
   regressions <- 3
