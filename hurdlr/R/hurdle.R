@@ -51,7 +51,24 @@
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return \code{Hurdle} returns a list which includes the items
+#' \describe{
+#'    \item{pD}{measure of model dimensionality \eq{p_D} where 
+#'    \eq{p_D = \bar{D} - D(\bar{\theta}}) is the \eq{"mean posterior deviance - 
+#'    deviance of posterior means"}}
+#'    \item{DIC}{Deviance Information Criterion where \eq{DIC = \bar{D} - p_D}}
+#'    \item{PPO}{Posterior Predictive Ordinate (PPO) measure of fit}
+#'    \item{CPO}{Conditional Predictive Ordinate (CPO) measure of fit}
+#'    \item{pars.means}{posterior mean(s) of third-component parameter(s) if 
+#'    \code{hurd != Inf}}  
+#'    \item{ll.means}{posterior means of the log-likelihood distributions of 
+#'    all model components}
+#'    \item{beta.means}{posterior means regression coefficients}
+#'    \item{dev}{posterior deviation where \eq{D = -2LogL}}
+#'    \item{beta}{posterior distributions of regression coefficients}
+#'    \item{pars}{posterior distribution(s) of third-component parameter(s) if 
+#'    \code{hurd != Inf}}  
+#'  }
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
@@ -416,24 +433,35 @@ hurdle <- function(y, x = NULL, hurd = Inf,
     ll.means <- list(PZ.bar = PZ.bar, PT.bar = PT.bar, PE.bar = PE.bar,
                      LT.bar = LT.bar, LE.bar = LE.bar)
     beta.means <- list(typ.mean = beta.bar[,1], pz = beta.bar[,2], pe = beta.bar[,3])
+    
+    #Output for two-hurdle model
+    output <- list(pD = pD,
+                   DIC = DIC,
+                   PPO = track.ppo/(iters - burn),
+                   CPO = (iters - burn)/(track.icpo),
+                   pars.means = pars.means,
+                   ll.means = ll.means,
+                   beta.means = beta.means,
+                   dev = keep.dev[(burn + 1):iters],
+                   beta = keep.beta[(burn + 1):iters,,],
+                   pars = keep.pars[(burn + 1):iters,]
+    )
   }
-
-  #Keep betas
+  
   if(hurd == Inf){
+    #Keep betas
     keep.beta <- keep.beta[,,-3]
+    
+    #Output for one-hurdle model
+    output <- list(pD = pD,
+                   DIC = DIC,
+                   PPO = track.ppo/(iters - burn),
+                   CPO = (iters - burn)/(track.icpo),
+                   ll.means = ll.means,
+                   beta.means = beta.means,
+                   dev = keep.dev[(burn + 1):iters],
+                   beta = keep.beta[(burn + 1):iters,,]
+    )
   }
-
-
-  output <- list(pD = pD,
-                 DIC = DIC,
-                 PPO = track.ppo/(iters - burn),
-                 CPO = (iters - burn)/(track.icpo),
-                 pars.means = pars.means,
-                 ll.means = ll.means,
-                 beta.means = beta.means,
-                 dev = keep.dev[(burn + 1):iters],
-                 beta = keep.beta[(burn + 1):iters,,],
-                 pars = keep.pars[(burn + 1):iters,]
-  )
   return(output)
 }
