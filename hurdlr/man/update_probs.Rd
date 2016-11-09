@@ -44,7 +44,10 @@ regression coefficient parameters.}
 coefficient estimation.}
 }
 \value{
-
+A list of MCMC-updated regression coefficients for the estimation of 
+the parameters 'p' (the probability of a zero-value observation) and 'q' 
+(the probability of an 'extreme' observation) as well as each coefficient's 
+MCMC acceptance ratio.
 }
 \description{
 MCMC algorithm for updating the likelihood probabilities in 
@@ -58,7 +61,7 @@ hurdle model regression using \code{\link{hurdle}}.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 \seealso{
 \code{\link{hurdle}} \cr

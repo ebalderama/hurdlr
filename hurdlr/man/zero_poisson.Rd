@@ -34,7 +34,14 @@ zero_poisson(y, x, a = 1, b = 1, lam.start = 1, beta.prior.mean = 0,
 \item{progress.bar}{logical operator. \code{TRUE} to print progress bar.}
 }
 \value{
-
+\code{zero_poisson} returns a list which includes the items
+\describe{
+   \item{lam}{numeric vector; posterior distribution of lambda parameter}
+   \item{beta}{numeric matrix; posterior distributions of regression coefficients}
+   \item{p}{numeric vector; posterior distribution of parameter 'p', the 
+   probability of a given zero observation belonging to the model's zero component}
+   \item{ll}{numeric vector; posterior log-likelihood}    
+}
 }
 \description{
 \code{zero_poisson} is used to fit zero-inflated 
@@ -48,6 +55,6 @@ poisson regression models to count data via Bayesian inference.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 

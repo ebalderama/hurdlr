@@ -35,18 +35,27 @@
 #' \eqn{P[X \le x]}, otherwise, \eqn{P[X > x]}.
 #' 
 #' @details 
+#' The generalized pareto distribution has density
+#' \deqn{f(x) = \frac{\sigma^{\frac{1}{\xi}}}{(\sigma + \xi(x-\mu))^{\frac{1}{\xi}+1}}}{%
+#' f(x) = sigma^(1/xi) / (sigma + xi*(x-mu))^(1/xi + 1)}
 #' 
-#' @return \code{dgpd} gives the continuous density, \code{mgpd} 
-#' gives the discrete density, \code{pgpd} gives the distribution 
+#' @return \code{dgpd} gives the continuous density, \code{pgpd} gives the distribution 
 #' function, \code{qgpd} gives the quantile function, and \code{rgpd} 
-#' generates random deviates.
+#' generates random deviates. 
+#'
+#' \code{mgpd} gives a probability mass function for a discretized version of GPD.
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
-#' @example 
+#' @examples
+#' dexp(1,rate=.5) #Exp(rate) equivalent to gpd with mu=0 AND xi=0, and sigma=1/rate.
+#' dgpd(1,mu=0,sigma=2,xi=0) #cannot take xi=0.
+#' dgpd(1,mu=0,sigma=2,xi=0.0000001) #but can get close.
 #' 
+#' ##"mass" function of GPD
+#' mgpd(8) == pgpd(8.5) - pgpd(7.5)
 
 #________________________________________________
 #dgpd()

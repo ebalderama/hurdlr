@@ -51,13 +51,56 @@
 #' 
 #' @details 
 #' 
-#' @return 
+#' @return \code{Hurdle} returns a list which includes the items
+#' \describe{
+#'    \item{pD}{measure of model dimensionality \eq{p_D} where 
+#'    \eq{p_D = \bar{D} - D(\bar{\theta}}) is the \eq{"mean posterior deviance - 
+#'    deviance of posterior means"}}
+#'    \item{DIC}{Deviance Information Criterion where \eq{DIC = \bar{D} - p_D}}
+#'    \item{PPO}{Posterior Predictive Ordinate (PPO) measure of fit}
+#'    \item{CPO}{Conditional Predictive Ordinate (CPO) measure of fit}
+#'    \item{pars.means}{posterior mean(s) of third-component parameter(s) if 
+#'    \code{hurd != Inf}}  
+#'    \item{ll.means}{posterior means of the log-likelihood distributions of 
+#'    all model components}
+#'    \item{beta.means}{posterior means regression coefficients}
+#'    \item{dev}{posterior deviation where \eq{D = -2LogL}}
+#'    \item{beta}{posterior distributions of regression coefficients}
+#'    \item{pars}{posterior distribution(s) of third-component parameter(s) if 
+#'    \code{hurd != Inf}}  
+#'  }
 #' 
 #' @author 
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
-#' @example 
+#' @examples
+#' #Generate some data:
+#' p=0.5; q=0.25; lam=3;
+#' mu=10; sigma=7; xi=0.75;
+#' n=200
+#'
+#' set.seed(2016)
+#' y <- rbinom(n,1,p)
+#' nz <- sum(1-y)
+#' extremes <- rbinom(sum(y),1,q)
+#' ne <- sum(extremes)
+#' nt <- n-nz-ne
+#' yt <- sample(mu-1,nt,replace=T,prob=dpois(1:(mu-1),3)/(ppois(mu-1,lam)-ppois(0,lam)))
+#' yz <- round(rgpd(nz,mu,sigma,xi))
+#' y[y==1] <- c(yt,yz)
+#' 
+#' m1 <- hurdle(y)
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
+#' 
 #' 
 
 #________________________________________________
@@ -72,9 +115,11 @@ hurdle <- function(y, x = NULL, hurd = Inf,
 
   #Initial values
   N <- length(y)
+  dist <- match.arg(dist)
+  dist.2 <- match.arg(dist.2)
   hurd <- ifelse(dist.2 == "none", Inf, hurd)
   pb <- txtProgressBar(min = 0, max = iters, style = 3)
-  x <- cbind(rep(1, N), X)
+  x <- cbind(rep(1, N), x)
   x <- as.matrix(x)
   x.col <- ncol(x)
   regressions <- 3
@@ -388,24 +433,35 @@ hurdle <- function(y, x = NULL, hurd = Inf,
     ll.means <- list(PZ.bar = PZ.bar, PT.bar = PT.bar, PE.bar = PE.bar,
                      LT.bar = LT.bar, LE.bar = LE.bar)
     beta.means <- list(typ.mean = beta.bar[,1], pz = beta.bar[,2], pe = beta.bar[,3])
+  
+    #Output for two-hurdle model
+    output <- list(pD = pD,
+                   DIC = DIC,
+                   PPO = track.ppo/(iters - burn),
+                   CPO = (iters - burn)/(track.icpo),
+                   pars.means = pars.means,
+                   ll.means = ll.means,
+                   beta.means = beta.means,
+                   dev = keep.dev[(burn + 1):iters],
+                   beta = keep.beta[(burn + 1):iters,,],
+                   pars = keep.pars[(burn + 1):iters,]
+      )
   }
 
-  #Keep betas
   if(hurd == Inf){
+    #Keep betas
     keep.beta <- keep.beta[,,-3]
-  }
-
-
-  output <- list(pD = pD,
-                 DIC = DIC,
-                 PPO = track.ppo/(iters - burn),
-                 CPO = (iters - burn)/(track.icpo),
-                 pars.means = pars.means,
-                 ll.means = ll.means,
-                 beta.means = beta.means,
-                 dev = keep.dev[(burn + 1):iters],
-                 beta = keep.beta[(burn + 1):iters,,],
-                 pars = keep.pars[(burn + 1):iters,]
-  )
+    
+    #Output for one-hurdle model
+    output <- list(pD = pD,
+                   DIC = DIC,
+                   PPO = track.ppo/(iters - burn),
+                   CPO = (iters - burn)/(track.icpo),
+                   ll.means = ll.means,
+                   beta.means = beta.means,
+                   dev = keep.dev[(burn + 1):iters],
+                   beta = keep.beta[(burn + 1):iters,,]
+        )
+    }
   return(output)
 }

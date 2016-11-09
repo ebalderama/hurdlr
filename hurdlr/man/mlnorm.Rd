@@ -2,42 +2,27 @@
 % Please edit documentation in R/mlnorm.R
 \name{mlnorm}
 \alias{mlnorm}
-\title{Probability distribution function of discrete log normal}
+\title{Density Function for Discrete Log Normal Distribution}
 \usage{
-mlnorm(y, meanlog = 0, sdlog = 1, log = T)
+mlnorm(x, meanlog = 0, sdlog = 1, log = T)
 }
 \arguments{
-\item{y}{numeric response vector.}
+\item{x}{vector of quantiles.}
 
-\item{x}{numeric predictor matrix.}
+\item{meanlog}{mean of the distribution on the log scale.}
 
-\item{hurd}{numeric threshold for 'extreme' observations of two-hurdle models. 
-\code{Inf} for one-hurdle models.}
+\item{sdlog}{standard deviation of the distribution on the log scale.}
 
-\item{dist}{character specification of response distribution.}
-
-\item{dist.2}{character specification of response distribution for 
-'extreme' observations of two-hurdle models.}
-
-\item{control}{list of parameters for controlling the fitting process, 
-specified by \code{\link{hurdle_control}}.}
-
-\item{iters}{number of iterations for the Markov chain to run.}
-
-\item{burn}{numeric burn-in length.}
-
-\item{nthin}{numeric thinning rate.}
-
-\item{plots}{logical operator. \code{TRUE} to output plots.}
-
-\item{progress.bar}{logical operator. \code{TRUE} to print progress bar.}
+\item{log}{logical; if \code{TRUE}, probabilities p are given 
+as log(p).}
 }
 \value{
-
+Discrete log-normal distributional density.
 }
 \description{
-\code{hurdle} is used to fit single or 
-double-hurdle regression models to count data via Bayesian inference.
+Density function of the discrete log normal distribution
+whose logarithm has mean equal to \code{meanlog} and standard deviation 
+equal to \code{sdlog}.
 }
 \details{
 
@@ -47,6 +32,6 @@ double-hurdle regression models to count data via Bayesian inference.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
-Dr. Earvin Balderama <\email{ebalderama@luc.edu}>
+Earvin Balderama <\email{ebalderama@luc.edu}>
 }
 

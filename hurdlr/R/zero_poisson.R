@@ -60,7 +60,7 @@
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
-#' @example 
+#' @examples  
 #' 
 
 #________________________________________________
