@@ -28,7 +28,7 @@
 #' 
 #' @seealso \code{\link{zero_poisson}}
 #' 
-#' @example 
+#' @examples
 #' 
 
 #________________________________________________

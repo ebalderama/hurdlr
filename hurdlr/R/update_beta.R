@@ -55,7 +55,7 @@
 #' \code{\link{hurdle}} \cr
 #' \code{\link{dist_ll}}
 #' 
-#' @example 
+#' @examples 
 #' 
 
 #________________________________________________
