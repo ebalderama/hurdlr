@@ -6,13 +6,19 @@
 #    Yi|theta =   {
 #                 {   (1-p)*f(x|theta),             yi > 0
 
-#Two-hurdle liklihood:
+#Two-hurdle likelihood:
 
 #                 {   p,                            yi = 0
 #                 {
 #    Yi|theta =   {   (1-q)*(1-p)*f(x|theta),       0 < yi < psi
 #                 {
 #                 {   q*(1-p)*g(x|theta),           yi >= psi
+
+#Regressions:
+
+# theta = BX = B0 + B1*x1 + B2*x2 ...
+# logit(p) = 1/(1 + exp(-BX)); BX = B0 + B1*x1 + B2*x2 ...
+# logit(q) = 1/(1 + exp(-BX)); BX = B0 + B1*x1 + B2*x2 ...
 
 
 #________________________________________________
@@ -108,7 +114,7 @@
 
 hurdle <- function(y, x = NULL, hurd = Inf,
                    dist = c("poisson", "nb", "lognormal", "gpd"),
-                   dist.2 = c("none", "gpd", "poisson", "lognormal", "nb"),
+                   dist.2 = c("gpd", "poisson", "lognormal", "nb"),
                    control = hurdle_control(),
                    iters = 1000, burn = 500, nthin = 1,
                    plots = T, progress.bar = T){
@@ -117,7 +123,8 @@ hurdle <- function(y, x = NULL, hurd = Inf,
   N <- length(y)
   dist <- match.arg(dist)
   dist.2 <- match.arg(dist.2)
-  hurd <- ifelse(dist.2 == "none", Inf, hurd)
+  #dist.2 <- ifelse(hurd == Inf, "none", match.arg(dist.2))
+  #hurd <- ifelse(dist.2 == "none", Inf, hurd)
   pb <- txtProgressBar(min = 0, max = iters, style = 3)
   x <- cbind(rep(1, N), x)
   x <- as.matrix(x)
@@ -460,7 +467,7 @@ hurdle <- function(y, x = NULL, hurd = Inf,
                    ll.means = ll.means,
                    beta.means = beta.means,
                    dev = keep.dev[(burn + 1):iters],
-                   beta = keep.beta[(burn + 1):iters,,]
+                   beta = keep.beta[(burn + 1):iters,]
     )
   }
   return(output)
