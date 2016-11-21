@@ -21,9 +21,6 @@ A vector of probabilities.
 \code{PT} is used to calculate the likelihood of a user-defined
 'typical' value count observation in a double-hurdle regression model.
 }
-\details{
-
-}
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
 Earvin Balderama <\email{ebalderama@luc.edu}>

@@ -19,9 +19,6 @@ A vector of probabilities.
 \code{PZ} is used to calculate the likelihood of a 
 zero-value count observation in a single or double-hurdle regression model.
 }
-\details{
-
-}
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
 Earvin Balderama <\email{ebalderama@luc.edu}>

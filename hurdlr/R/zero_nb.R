@@ -25,6 +25,8 @@
 #' 
 #' @param x numeric predictor matrix.
 #' 
+#' @param size size parameter for negative binomial likelihood distributions.
+#' 
 #' @param a shape parameter for gamma prior distributions.
 #' 
 #' @param b rate parameter for gamma prior distributions.
@@ -45,7 +47,7 @@
 #' 
 #' @param progress.bar logical operator. \code{TRUE} to print progress bar.
 #' 
-#' @details 
+#' @details Fits a zero-inflated negative binomial (ZINB) model.
 #' 
 #' @return \code{zero_nb} returns a list which includes the items
 #' \describe{
@@ -60,7 +62,6 @@
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
-#' @example 
 #' 
 
 #________________________________________________

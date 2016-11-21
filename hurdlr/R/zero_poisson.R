@@ -45,7 +45,7 @@
 #' 
 #' @param progress.bar logical operator. \code{TRUE} to print progress bar.
 #' 
-#' @details 
+#' @details Fits a zero-inflated Poisson (ZIP) model.
 #' 
 #' @return \code{zero_poisson} returns a list which includes the items
 #' \describe{
@@ -60,7 +60,6 @@
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
-#' @examples  
 #' 
 
 #________________________________________________

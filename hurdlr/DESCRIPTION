@@ -6,7 +6,7 @@ Date: 2015-11-16
 Authors@R: c(person("Taylor", "Trippe", email = "ttrippe@luc.edu", role = c("aut", "cre")),person("Earvin", "Balderama", email = "ebalderama@luc.edu", role = "aut"))
 Depends:
     R (>= 3.3.0)
-License:
+License: GPL (>=2)
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1

@@ -24,12 +24,6 @@ Density function of the discrete log normal distribution
 whose logarithm has mean equal to \code{meanlog} and standard deviation 
 equal to \code{sdlog}.
 }
-\details{
-
-}
-\examples{
-
-}
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
 Earvin Balderama <\email{ebalderama@luc.edu}>

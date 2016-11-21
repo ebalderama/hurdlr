@@ -42,9 +42,6 @@ A list of all input values.
 Various parameters for fitting control of hurdle 
 model regression using \code{\link{hurdle}}.
 }
-\examples{
-
-}
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
 Earvin Balderama <\email{ebalderama@luc.edu}>

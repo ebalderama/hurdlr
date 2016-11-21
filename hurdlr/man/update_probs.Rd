@@ -53,12 +53,6 @@ MCMC acceptance ratio.
 MCMC algorithm for updating the likelihood probabilities in 
 hurdle model regression using \code{\link{hurdle}}.
 }
-\details{
-
-}
-\examples{
-
-}
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
 Earvin Balderama <\email{ebalderama@luc.edu}>

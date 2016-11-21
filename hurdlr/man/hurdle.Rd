@@ -5,9 +5,9 @@
 \title{Hurdle Model Count Data Regression}
 \usage{
 hurdle(y, x = NULL, hurd = Inf, dist = c("poisson", "nb", "lognormal",
-  "gpd"), dist.2 = c("none", "gpd", "poisson", "lognormal", "nb"),
+  "gpd"), dist.2 = c("gpd", "poisson", "lognormal", "nb"),
   control = hurdle_control(), iters = 1000, burn = 500, nthin = 1,
-  plots = T, progress.bar = T)
+  plots = FALSE, progress.bar = TRUE)
 }
 \arguments{
 \item{y}{numeric response vector.}
@@ -36,14 +36,33 @@ specified by \code{\link{hurdle_control}}.}
 \item{progress.bar}{logical operator. \code{TRUE} to print progress bar.}
 }
 \value{
-
+\code{hurdle} returns a list which includes the items
+\describe{
+   \item{pD}{measure of model dimensionality \eqn{p_D} where 
+   \eqn{p_D = \bar{D} - D(\bar{\theta}}) is the \eqn{"mean posterior deviance - 
+   deviance of posterior means"}}
+   \item{DIC}{Deviance Information Criterion where \eqn{DIC = \bar{D} - p_D}}
+   \item{PPO}{Posterior Predictive Ordinate (PPO) measure of fit}
+   \item{CPO}{Conditional Predictive Ordinate (CPO) measure of fit}
+   \item{pars.means}{posterior mean(s) of third-component parameter(s) if 
+   \code{hurd != Inf}}  
+   \item{ll.means}{posterior means of the log-likelihood distributions of 
+   all model components}
+   \item{beta.means}{posterior means regression coefficients}
+   \item{dev}{posterior deviation where \eqn{D = -2LogL}}
+   \item{beta}{posterior distributions of regression coefficients}
+   \item{pars}{posterior distribution(s) of third-component parameter(s) if 
+   \code{hurd != Inf}}  
+ }
 }
 \description{
 \code{hurdle} is used to fit single or 
 double-hurdle regression models to count data via Bayesian inference.
 }
 \details{
-
+Setting \code{dist} and \code{dist.2} to be the same distribution creates a 
+single \code{dist}-hurdle model, not a double-hurdle model. However, this 
+is being considered in future package updates.
 }
 \examples{
 #Generate some data:
@@ -57,11 +76,11 @@ nz <- sum(1-y)
 extremes <- rbinom(sum(y),1,q)
 ne <- sum(extremes)
 nt <- n-nz-ne
-yt <- sample(mu-1,nt,replace=T,prob=dpois(1:(mu-1),3)/(ppois(mu-1,lam)-ppois(0,lam)))
+yt <- sample(mu-1,nt,replace=TRUE,prob=dpois(1:(mu-1),3)/(ppois(mu-1,lam)-ppois(0,lam)))
 yz <- round(rgpd(nz,mu,sigma,xi))
 y[y==1] <- c(yt,yz)
 
-m1 <- hurdle()
+
 
 
 

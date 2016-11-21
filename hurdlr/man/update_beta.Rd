@@ -10,11 +10,11 @@ update_beta(y, x, hurd, dist, like.part, beta.prior.mean, beta.prior.sd, beta,
 }
 \arguments{
 \item{y}{numeric response vector of observations within the bounds of the 
-second component of the likelihood function, \eqn{y[0 < y & y < hurd]}}
+second component of the likelihood function, \eqn{y[0 < y \& y < hurd]}}
 
 \item{x}{optional numeric predictor matrix for response observations within 
 the bounds of the second component of the likelihood function, 
-\eqn{y[0 < y & y < hurd]}.}
+\eqn{y[0 < y \& y < hurd]}.}
 
 \item{hurd}{numeric threshold for 'extreme' observations of two-hurdle models.}
 
@@ -30,7 +30,7 @@ component of the likelihood function.}
 \item{beta}{numeric matrix of current regression coefficient parameter values.}
 
 \item{XB}{\eqn{x*beta[,1]} product matrix for response observations within the bounds 
-of the second component of the likelihood function, \eqn{y[0 < y & y < hurd]}.}
+of the second component of the likelihood function, \eqn{y[0 < y \& y < hurd]}.}
 
 \item{beta.acc}{numeric matrix of current MCMC acceptance rates for 
 regression coefficient parameters.}
@@ -49,12 +49,6 @@ acceptance ratio.
 \description{
 MCMC algorithm for updating the second-component likelihood 
 parameters in hurdle model regression using \code{\link{hurdle}}.
-}
-\details{
-
-}
-\examples{
-
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr

@@ -12,7 +12,6 @@
 #' @param log logical operator. If \code{TRUE}, probabilities \code{p} 
 #' and \code{q} are given as \code{log(p)}, \code{log(q)}.
 #' 
-#' @details  
 #' 
 #' @return A vector of probabilities.
 #' 

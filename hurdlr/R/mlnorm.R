@@ -17,7 +17,6 @@
 #' @param log logical; if \code{TRUE}, probabilities p are given 
 #' as log(p).
 #' 
-#' @details 
 #' 
 #' @return Discrete log-normal distributional density.
 #' 
@@ -25,7 +24,6 @@
 #' Taylor Trippe <\email{ttrippe@@luc.edu}> \cr
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
-#' @examples
 #' 
 
 #________________________________________________

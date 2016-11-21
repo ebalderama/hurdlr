@@ -25,12 +25,6 @@ current iteration of the MCMC algorithm.
 Data likelihood fuction for zero-inflated Poisson model 
 regression using \code{\link{zero_poisson}}.
 }
-\details{
-
-}
-\examples{
-
-}
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
 Earvin Balderama <\email{ebalderama@luc.edu}>

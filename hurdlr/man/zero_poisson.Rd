@@ -48,10 +48,7 @@ zero_poisson(y, x, a = 1, b = 1, lam.start = 1, beta.prior.mean = 0,
 poisson regression models to count data via Bayesian inference.
 }
 \details{
-
-}
-\examples{
-
+Fits a zero-inflated Poisson (ZIP) model.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr

@@ -5,8 +5,8 @@
 \title{Distributional Likelihood for Hurdle Model Count Data Regression}
 \usage{
 dist_ll(y, hurd = Inf, lam = NULL, size = 1, mu = NULL, xi = NULL,
-  sigma = NULL, dist = c("poisson", "nb", "lognormal", "gpd", "none"),
-  g.x = F, log = T)
+  sigma = NULL, dist = c("poisson", "nb", "lognormal", "gpd"), g.x = F,
+  log = T)
 }
 \arguments{
 \item{y}{numeric response vector.}
@@ -43,10 +43,8 @@ current iteration of the MCMC algorithm.
 regression using \code{\link{hurdle}}.
 }
 \details{
-
-}
-\examples{
-
+Currently, Poisson, Negative Binomial, log-Normal, 
+and Generalized Pareto distributions are available.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr

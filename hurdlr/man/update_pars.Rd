@@ -52,12 +52,6 @@ parameter(s) and each parameter's MCMC acceptance ratio.
 MCMC algorithm for updating the third-component likelihood 
 parameters in hurdle model regression using \code{\link{hurdle}}.
 }
-\details{
-
-}
-\examples{
-
-}
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr
 Earvin Balderama <\email{ebalderama@luc.edu}>

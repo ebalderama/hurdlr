@@ -42,7 +42,6 @@
 #' @param beta.tune numeric matrix of current MCMC tuning values for regression 
 #' coefficient estimation.
 #' 
-#' @details
 #' 
 #' @return A list of MCMC-updated regression coefficients for the estimation of 
 #' the parameters 'p' (the probability of a zero-value observation) and 'q' 
@@ -54,11 +53,9 @@
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @seealso 
-#' 
 #' \code{\link{hurdle}} \cr
 #' \code{\link{dist_ll}}
 #' 
-#' @examples
 #' 
 
 #________________________________________________

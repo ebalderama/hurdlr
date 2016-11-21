@@ -19,7 +19,6 @@
 #' 
 #' @param p vector of 'extra' zero-count probabilities.
 #' 
-#' @details 
 #' 
 #' @return The log-likelihood of the zero-inflated negative binomial fit 
 #' for the current iteration of the MCMC algorithm.
@@ -30,7 +29,6 @@
 #' 
 #' @seealso \code{\link{zero_nb}}
 #' 
-#' @examples 
 #' 
 
 #________________________________________________

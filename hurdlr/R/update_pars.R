@@ -43,7 +43,6 @@
 #' @param g.x logical operator. \code{TRUE} if operating within the third component 
 #' of the likelihood function (the likelihood of 'extreme' observations).
 #' 
-#' @details 
 #' 
 #' @return A list of MCMC-updated likelihood estimator(s) for the third-component
 #' parameter(s) and each parameter's MCMC acceptance ratio.  
@@ -53,11 +52,9 @@
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @seealso 
-#' 
 #' \code{\link{hurdle}} \cr
 #' \code{\link{dist_ll}}
 #' 
-#' @examples 
 #' 
 
 #________________________________________________

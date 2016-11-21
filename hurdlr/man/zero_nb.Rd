@@ -13,6 +13,8 @@ zero_nb(y, x, size, a = 1, b = 1, mu.start = 1, beta.prior.mean = 0,
 
 \item{x}{numeric predictor matrix.}
 
+\item{size}{size parameter for negative binomial likelihood distributions.}
+
 \item{a}{shape parameter for gamma prior distributions.}
 
 \item{b}{rate parameter for gamma prior distributions.}
@@ -48,10 +50,7 @@ zero_nb(y, x, size, a = 1, b = 1, mu.start = 1, beta.prior.mean = 0,
 negative binomial regression models to count data via Bayesian inference.
 }
 \details{
-
-}
-\examples{
-
+Fits a zero-inflated negative binomial (ZINB) model.
 }
 \author{
 Taylor Trippe <\email{ttrippe@luc.edu}> \cr

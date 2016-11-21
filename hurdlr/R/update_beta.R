@@ -9,11 +9,11 @@
 #' parameters in hurdle model regression using \code{\link{hurdle}}.
 #' 
 #' @param y numeric response vector of observations within the bounds of the 
-#' second component of the likelihood function, \eqn{y[0 < y & y < hurd]}
+#' second component of the likelihood function, \eqn{y[0 < y \& y < hurd]}
 #' 
 #' @param x optional numeric predictor matrix for response observations within 
 #' the bounds of the second component of the likelihood function, 
-#' \eqn{y[0 < y & y < hurd]}.
+#' \eqn{y[0 < y \& y < hurd]}.
 #' 
 #' @param hurd numeric threshold for 'extreme' observations of two-hurdle models.
 #' 
@@ -29,7 +29,7 @@
 #' @param beta numeric matrix of current regression coefficient parameter values.
 #' 
 #' @param XB \eqn{x*beta[,1]} product matrix for response observations within the bounds 
-#' of the second component of the likelihood function, \eqn{y[0 < y & y < hurd]}.
+#' of the second component of the likelihood function, \eqn{y[0 < y \& y < hurd]}.
 #' 
 #' @param beta.acc numeric matrix of current MCMC acceptance rates for 
 #' regression coefficient parameters.
@@ -40,7 +40,6 @@
 #' @param g.x logical operator. \code{TRUE} if operating within the third component 
 #' of the likelihood function (the likelihood of 'extreme' observations).
 #' 
-#' @details 
 #' 
 #' @return A list of MCMC-updated regression coefficients for the estimation of 
 #' the second-component likelihood parameter as well as each coefficient's MCMC
@@ -51,11 +50,9 @@
 #' Earvin Balderama <\email{ebalderama@@luc.edu}>
 #' 
 #' @seealso 
-#' 
 #' \code{\link{hurdle}} \cr
 #' \code{\link{dist_ll}}
 #' 
-#' @examples 
 #' 
 
 #________________________________________________
