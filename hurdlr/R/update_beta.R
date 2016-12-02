@@ -114,27 +114,29 @@ update_beta <- function(y, x, hurd, dist, like.part,
     }
   }
 
-  if(dist == "gpd"){
-
-    for(j in 1:nrow(beta)){
-
-      #Update GPD sigma
-      beta.new <- rnorm(1, beta1[j], beta1.tune[j])
-      XB.new <- XB + x[,j]*(beta.new - beta1[j])
-      sigma.new <- exp(XB.new)
-      like.new <- dist_ll(y, hurd, xi = xi, sigma = sigma.new, dist = dist, g.x = F, log = T)
-
-      sigma.ratio <- dnorm(beta.new, beta.prior.mean, beta.prior.sd, log = T) -
-        dnorm(beta1[j], beta.prior.mean, beta.prior.sd, log = T) +
-        sum(like.new) - sum(like.cur)
-
-      if(is.finite(sigma.ratio))if(log(runif(1)) < sigma.ratio){
-        like.cur <- like.new
-        beta1[j] <- beta.new
-        beta1.acc[j] <- beta1.acc[j] + 1
-      }
-    }
-  }
+### Comment out GPD from the typical distribution
+#
+#  if(dist == "gpd"){
+#
+#    for(j in 1:nrow(beta)){
+#
+#      #Update GPD sigma
+#      beta.new <- rnorm(1, beta1[j], beta1.tune[j])
+#      XB.new <- XB + x[,j]*(beta.new - beta1[j])
+#      sigma.new <- exp(XB.new)
+#      like.new <- dist_ll(y, hurd, xi = xi, sigma = sigma.new, dist = dist, g.x = F, log = T)
+#
+#      sigma.ratio <- dnorm(beta.new, beta.prior.mean, beta.prior.sd, log = T) -
+#        dnorm(beta1[j], beta.prior.mean, beta.prior.sd, log = T) +
+#        sum(like.new) - sum(like.cur)
+#
+#      if(is.finite(sigma.ratio))if(log(runif(1)) < sigma.ratio){
+#        like.cur <- like.new
+#        beta1[j] <- beta.new
+#        beta1.acc[j] <- beta1.acc[j] + 1
+#      }
+#    }
+#  }
 
   output <- list(beta1 = beta1,
                  beta1.acc = beta1.acc)

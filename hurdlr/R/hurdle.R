@@ -120,7 +120,7 @@
 #Source code
 
 hurdle <- function(y, x = NULL, hurd = Inf,
-                   dist = c("poisson", "nb", "lognormal", "gpd"),
+                   dist = c("poisson", "nb", "lognormal"),
                    dist.2 = c("gpd", "poisson", "lognormal", "nb"),
                    control = hurdle_control(),
                    iters = 1000, burn = 500, nthin = 1,
@@ -130,8 +130,6 @@ hurdle <- function(y, x = NULL, hurd = Inf,
   N <- length(y)
   dist <- match.arg(dist)
   dist.2 <- match.arg(dist.2)
-  #dist.2 <- ifelse(hurd == Inf, "none", match.arg(dist.2))
-  #hurd <- ifelse(dist.2 == "none", Inf, hurd)
   pb <- txtProgressBar(min = 0, max = iters, style = 3)
   x <- cbind(rep(1, N), x)
   x <- as.matrix(x)
@@ -226,11 +224,13 @@ hurdle <- function(y, x = NULL, hurd = Inf,
         mu <- exp(XB1)
       }
 
-      if(dist == "gpd"){
-        beta[,1] <- out.fx$beta1; beta.acc[,1] <- out.fx$beta1.acc
-        XB1 <- x%*%beta[,1]
-        sigma <- exp(XB1)
-      }
+### Comment out GPD from the typical distribution
+#
+#      if(dist == "gpd"){
+#        beta[,1] <- out.fx$beta1; beta.acc[,1] <- out.fx$beta1.acc
+#        XB1 <- x%*%beta[,1]
+#        sigma <- exp(XB1)
+#      }
 
       LT <- dist_ll(y = y[0 < y & y < hurd], hurd = hurd, size = size,
                     lam = lam[0 < y & y < hurd], mu = mu[0 < y & y < hurd], xi = xi,
@@ -432,50 +432,47 @@ hurdle <- function(y, x = NULL, hurd = Inf,
     if(dist.2 == "poisson"){
       pars.means <- list(typ.mean.bar = typ.mean.bar, pz.bar = pz.bar,
                          pe.bar = pe.bar, ext.lam.bar = ext.lam.bar)
+      pars <- list(lambda = keep.pars[(burn + 1):iters,1])
     }
 
     if(dist.2 == "nb" | dist.2 == "lognormal"){
       pars.means <- list(typ.mean.bar = typ.mean.bar, pz.bar = pz.bar,
                          pe.bar = pe.bar, ext.mu.bar = ext.mu.bar)
+      keep.pars <- list(mu = keep.pars[(burn + 1):iters,2])
     }
 
     if(dist.2 == "gpd"){
       pars.means <- list(typ.mean.bar = typ.mean.bar, pz.bar = pz.bar,
                          pe.bar = pe.bar, ext.sigma.bar = ext.sigma.bar, ext.xi.bar = ext.xi.bar)
+      keep.pars <- list(sigma = keep.pars[(burn + 1):iters,3], xi = keep.pars[(burn + 1):iters,4])
     }
 
     ll.means <- list(PZ.bar = PZ.bar, PT.bar = PT.bar, PE.bar = PE.bar,
                      LT.bar = LT.bar, LE.bar = LE.bar)
     beta.means <- list(typ.mean = beta.bar[,1], pz = beta.bar[,2], pe = beta.bar[,3])
-    
-    #Output for two-hurdle model
-    output <- list(pD = pD,
-                   DIC = DIC,
-                   PPO = track.ppo/(iters - burn),
-                   CPO = (iters - burn)/(track.icpo),
-                   pars.means = pars.means,
-                   ll.means = ll.means,
-                   beta.means = beta.means,
-                   dev = keep.dev[(burn + 1):iters],
-                   beta = keep.beta[(burn + 1):iters,,],
-                   pars = keep.pars[(burn + 1):iters,]
-    )
+    keep.beta <- keep.beta[(burn + 1):iters,,]
   }
   
-  if(hurd == Inf){
-    #Keep betas
-    keep.beta <- keep.beta[,,-3]
+  if(hurd == Inf || dist == dist.2){
     
-    #Output for one-hurdle model
-    output <- list(pD = pD,
-                   DIC = DIC,
-                   PPO = track.ppo/(iters - burn),
-                   CPO = (iters - burn)/(track.icpo),
-                   ll.means = ll.means,
-                   beta.means = beta.means,
-                   dev = keep.dev[(burn + 1):iters],
-                   beta = keep.beta[(burn + 1):iters,]
-    )
+    #Keep betas
+    keep.beta <- keep.beta[(burn + 1):iters,,-3]
+    #No 'extreme' parameter estimations
+    keep.pars <- NULL
   }
+  
+  #Function Output
+  output <- list(pD = pD,
+                 DIC = DIC,
+                 PPO = track.ppo/(iters - burn),
+                 CPO = (iters - burn)/(track.icpo),
+                 pars.means = pars.means,
+                 ll.means = ll.means,
+                 beta.means = beta.means,
+                 dev = keep.dev[(burn + 1):iters],
+                 beta = keep.beta,
+                 pars = keep.pars
+  )
+  
   return(output)
 }
