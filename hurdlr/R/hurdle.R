@@ -408,7 +408,7 @@ hurdle <- function(y, x = NULL, hurd = Inf,
   ll.means <- c(PZ.bar, PT.bar, LT.bar)
 
   if(hurd != Inf){
-    LE.bar <- dist_ll(y[y > hurd], hurd = hurd,
+    LE.bar <- dist_ll(y[y >= hurd], hurd = hurd,
                       lam = ext.lam.bar, mu = ext.mu.bar,
                       sigma = ext.sigma.bar, xi = ext.xi.bar,
                       dist = dist.2, g.x = T, log = T)
