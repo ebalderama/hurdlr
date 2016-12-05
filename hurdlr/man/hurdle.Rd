@@ -4,8 +4,8 @@
 \alias{hurdle}
 \title{Hurdle Model Count Data Regression}
 \usage{
-hurdle(y, x = NULL, hurd = Inf, dist = c("poisson", "nb", "lognormal",
-  "gpd"), dist.2 = c("gpd", "poisson", "lognormal", "nb"),
+hurdle(y, x = NULL, hurd = Inf, dist = c("poisson", "nb", "lognormal"),
+  dist.2 = c("gpd", "poisson", "lognormal", "nb"),
   control = hurdle_control(), iters = 1000, burn = 500, nthin = 1,
   plots = FALSE, progress.bar = TRUE)
 }
